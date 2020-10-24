@@ -11,7 +11,6 @@
 		F703FD3324F3B6A500509C6A /* ArtistRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F703FD3224F3B6A500509C6A /* ArtistRow.swift */; };
 		F72B3A272517ED0C00A1B18B /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72B3A262517ED0C00A1B18B /* CoverView.swift */; };
 		F72B3A2B2517EE5300A1B18B /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72B3A2A2517EE5300A1B18B /* PersonView.swift */; };
-		F73592AA251D21FB0042DCA9 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73592A9251D21FB0042DCA9 /* UIImage.swift */; };
 		F73BB9C124F6D25B00520777 /* AddMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73BB9C024F6D25B00520777 /* AddMusicView.swift */; };
 		F743D45425121AAB002E5F61 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743D45325121AAB002E5F61 /* TextView.swift */; };
 		F747B9752542A6D8005F368F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747B9742542A6D8005F368F /* SearchView.swift */; };
@@ -31,8 +30,10 @@
 		F7AF10512540309F003CC380 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF10502540309F003CC380 /* ItunesService.swift */; };
 		F7AF105625403137003CC380 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF105525403137003CC380 /* URLImageView.swift */; };
 		F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B103D72500E60700C895FE /* AddArtistView.swift */; };
-		F7B2007A251DEEF0004B9E1F /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B20079251DEEF0004B9E1F /* CGImage.swift */; };
+		F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */; };
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
+		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
+		F7DE4045254358940026B30F /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4044254358940026B30F /* SongInfoView.swift */; };
 		F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F209EC251CFCB4001A4111 /* FilteredList.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +43,6 @@
 		F703FD3224F3B6A500509C6A /* ArtistRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistRow.swift; sourceTree = "<group>"; };
 		F72B3A262517ED0C00A1B18B /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
 		F72B3A2A2517EE5300A1B18B /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
-		F73592A9251D21FB0042DCA9 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		F73BB9C024F6D25B00520777 /* AddMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicView.swift; sourceTree = "<group>"; };
 		F743D45325121AAB002E5F61 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F747B9742542A6D8005F368F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -64,8 +64,10 @@
 		F7AF10502540309F003CC380 /* ItunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
 		F7AF105525403137003CC380 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		F7B103D72500E60700C895FE /* AddArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArtistView.swift; sourceTree = "<group>"; };
-		F7B20079251DEEF0004B9E1F /* CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage.swift; sourceTree = "<group>"; };
+		F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateFormatter.swift; sourceTree = "<group>"; };
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
+		F7DE4044254358940026B30F /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
 		F7F209EC251CFCB4001A4111 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,15 +88,6 @@
 				596BBBF54947DA3D9DA050A8 /* libPods-Songer.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F73592A8251D21E00042DCA9 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F7B20079251DEEF0004B9E1F /* CGImage.swift */,
-				F73592A9251D21FB0042DCA9 /* UIImage.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F740C63725080FC4009B1410 /* CustomView */ = {
@@ -132,8 +125,8 @@
 			children = (
 				F77EACE524F2ECF600F5D105 /* AppDelegate.swift */,
 				F77EACE724F2ECF600F5D105 /* SceneDelegate.swift */,
+				F7C9F9A0254439DF00E78A94 /* Tools */,
 				F7AF104F25403030003CC380 /* Services */,
-				F73592A8251D21E00042DCA9 /* Extensions */,
 				F77EACFB24F2F03200F5D105 /* Models */,
 				F77EACFC24F2F03A00F5D105 /* Views */,
 				F77EACEB24F2ECF800F5D105 /* Assets.xcassets */,
@@ -170,6 +163,7 @@
 				F740C63725080FC4009B1410 /* CustomView */,
 				F7B103D92500E67C00C895FE /* ModalView */,
 				F79B5C942503CE24000F5FAE /* Rows */,
+				F7DE4044254358940026B30F /* SongInfoView.swift */,
 				F77EACFD24F2F18100F5D105 /* SongView.swift */,
 				F747B9742542A6D8005F368F /* SearchView.swift */,
 				F77EACE924F2ECF600F5D105 /* ContentView.swift */,
@@ -190,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				F7AF10502540309F003CC380 /* ItunesService.swift */,
+				F7DE403E254346560026B30F /* ItunesDataFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -203,11 +198,19 @@
 			path = ModalView;
 			sourceTree = "<group>";
 		};
+		F7C9F9A0254439DF00E78A94 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		F7CA2ED12541D49E0085FD26 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				F77EAD0324F31E8A00F5D105 /* SongList.swift */,
 				F77EAD0124F30F7300F5D105 /* ArtistsList.swift */,
+				F77EAD0324F31E8A00F5D105 /* SongList.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -286,10 +289,10 @@
 				F77EACFA24F2ED2B00F5D105 /* Music.swift in Sources */,
 				F77EACE624F2ECF600F5D105 /* AppDelegate.swift in Sources */,
 				F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */,
+				F7DE4045254358940026B30F /* SongInfoView.swift in Sources */,
 				F77EACFE24F2F18100F5D105 /* SongView.swift in Sources */,
 				F747B9752542A6D8005F368F /* SearchView.swift in Sources */,
 				F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */,
-				F7B2007A251DEEF0004B9E1F /* CGImage.swift in Sources */,
 				F7AF104C25402FFC003CC380 /* SongInfo.swift in Sources */,
 				F703FD3124F3AFC300509C6A /* MusicArtist.swift in Sources */,
 				F77EAD0224F30F7300F5D105 /* ArtistsList.swift in Sources */,
@@ -297,13 +300,14 @@
 				F79B5C932503CE1F000F5FAE /* SongRow.swift in Sources */,
 				F77EAD0424F31E8A00F5D105 /* SongList.swift in Sources */,
 				F7AF10512540309F003CC380 /* ItunesService.swift in Sources */,
+				F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */,
 				F72B3A2B2517EE5300A1B18B /* PersonView.swift in Sources */,
 				F743D45425121AAB002E5F61 /* TextView.swift in Sources */,
 				F73BB9C124F6D25B00520777 /* AddMusicView.swift in Sources */,
+				F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */,
 				F703FD3324F3B6A500509C6A /* ArtistRow.swift in Sources */,
 				F72B3A272517ED0C00A1B18B /* CoverView.swift in Sources */,
 				F77EACE824F2ECF600F5D105 /* SceneDelegate.swift in Sources */,
-				F73592AA251D21FB0042DCA9 /* UIImage.swift in Sources */,
 				F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */,
 				F77EACEA24F2ECF600F5D105 /* ContentView.swift in Sources */,
 				F7AF105625403137003CC380 /* URLImageView.swift in Sources */,

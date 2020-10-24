@@ -20,24 +20,27 @@ class ItunesService {
         searchURLComponents.path = "/search"
     }
     
-    func fetchURLImage(urlString: String, completion: @escaping (UIImage) -> () ) {
+    func requestURLImage(urlString: String, completion: @escaping (Result<Data, Error>) -> () ) {
         guard let url = URL(string: urlString) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode != 200 {
-                    print("Status code: \(response.statusCode)")
-                }
-            }
-            
-            guard let data = data else { return }
-            
             DispatchQueue.main.async {
-                if let image = UIImage(data: data) {
-                    
-                    completion(image)
+                
+                if let error = error {
+                    print("Failed get image from url: ", error)
+                    completion(.failure(error))
                 }
+                
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode != 200 {
+                        print("Status url image code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
             }
             
         }
@@ -45,27 +48,34 @@ class ItunesService {
         task.resume()
     }
     
-    func fetchTrackByArtist(artistName: String, songName: String, completion: @escaping (SongInfo) -> ()) {
-        
-        fetchSongsByArtist(query: artistName) { (songs) in
-            
-            for song in songs {
-                
-                if song.trackName == songName {
-                    completion(song)
-                    return
-                }
-            }
-            
-        }
-        
-    }
+//    func requestTrackByArtist(artistName: String, songName: String, completion: @escaping (SongInfo) -> ()) {
+//
+//        requestSongsByArtist(query: artistName) { (songs) in
+//
+//
+//
+//            switch result {
+//
+//            case .success(let songs):
+//                songs.map { (song)  in
+//                    if song.trackName == songName {
+//                        completion(song)
+//                        return
+//                    }
+//                }
+//            case .failure(let error):
+//                print("error: ", error)
+//            }
+//
+//        }
+//
+//    }
     
-    func fetchSongsByArtist(query: String, completion: @escaping ([SongInfo]) -> () ) {
+    func requestSongsByArtist(query: String, completion: @escaping (Result<Data, Error>) -> () ) {
         
         searchURLComponents.queryItems = [
             URLQueryItem(name: "term", value: query),
-            URLQueryItem(name: "entity", value: "song"),
+            URLQueryItem(name: "entity", value: "musicTrack"),
             URLQueryItem(name: "limit", value: "200")
         ]
         
@@ -73,36 +83,24 @@ class ItunesService {
         
         guard let searchURL = URL(string: absoluteStringURL) else { return }
         
-        print(absoluteStringURL)
-        
         let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
             
-            var songs: [SongInfo] = []
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            if let response = response as? HTTPURLResponse {
-                
-                if response.statusCode != 200 {
-                    print("Status code: \(response.statusCode)")
-                }
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let answer = try JSONDecoder().decode(SongInfoModel.self, from: data)
-
-                songs = answer.results
-
-            } catch {
-                print(error.localizedDescription)
-            }
-            
             DispatchQueue.main.async {
-                completion(songs)
+                
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let response = response as? HTTPURLResponse {
+                    
+                    if response.statusCode != 200 {
+                        print("Status code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
             }
         }
         

@@ -13,30 +13,22 @@ struct SongList: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @FetchRequest(entity: Music.entity(), sortDescriptors: []) var songs: FetchedResults<Music>
+    
     @State private var showMusicView: Bool = false
     @State private var showAddMusicView: Bool = false
     
     var artistName: String?
-    var allListSong: Bool?
     
     var body: some View {
         
-        FilteredList(filteredKey: "artist", filteredValue: artistName ?? String()){ (song: Music) in
+        FilteredList(filteredKey: "artist", filteredValue: artistName ?? ""){ (song: Music) in
             Button(action: {
                 showMusicView.toggle()
             }, label: {
-                
-                if let allListSong = allListSong {
-                    
-                    if allListSong {
-                        SongRow(pictures: UIImage(data: song.pictures)!,
-                                songName: song.name, author: song.artist)
-                    }
-                    
-                } else {
-                    SongRow(pictures: UIImage(data: song.pictures)!,
-                            songName: song.name)
-                }
+
+                SongRow(pictures: UIImage(data: song.pictures)!, songName: song.name, author: song.artist)
+
             }).sheet(isPresented: $showMusicView){
                 SongView().environmentObject(song)
             }

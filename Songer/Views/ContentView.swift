@@ -29,7 +29,7 @@ struct ContentView: View {
                         Text("Artists")
                     }
                 
-                SongList(allListSong: true)
+                SongList()
                     .tabItem {
                         Image(systemName: "music.note.list")
                             .imageScale(.large)

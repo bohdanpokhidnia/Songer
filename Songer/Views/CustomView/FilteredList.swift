@@ -29,33 +29,25 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     }
     
     var body: some View {
-//        List(fetchRequest.wrappedValue, id: \.self) { song in
-//            self.content(song)
-//        }
         List {
             ForEach(fetchRequest.wrappedValue, id: \.self) { song in
                 self.content(song)
             }
             .onDelete(perform: delete)
         }
+        
     }
     
-    func delete(at: IndexSet) {
+    func delete(index: IndexSet) {
         
-        let deleteArtist = songs[at.first!]
+        let deleteArtist = songs[index.first!]
         
         self.managedObjectContext.delete(deleteArtist)
         
         do {
             try self.managedObjectContext.save()
         } catch {
-            print(error.localizedDescription)
+            print("Error in remove object from DB: ", error)
         }
     }
 }
-
-//struct FilteredList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FilteredList()
-//    }
-//}

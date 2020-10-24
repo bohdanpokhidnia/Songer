@@ -10,15 +10,20 @@ import SwiftUI
 
 struct URLImageView: View {
     var urlString: String
-    @State var image: UIImage = UIImage(named: "cover")!
+    @State var cover: UIImage = UIImage(named: "cover")!
+    
+    var width: CGFloat?
+    var height: CGFloat?
     
     var body: some View {
-        Image(uiImage: image)
+        Image(uiImage: cover)
             .resizable()
-            .frame(width: 50, height: 50)
+            .frame(width: width ?? 50, height: height ?? 50)
             .onAppear {
-                ItunesService().fetchURLImage(urlString: self.urlString) { (uiimage) in
-                    self.image = uiimage
+                ItunesDataFetcher().fetchCoverFromUrl(url: urlString) { (image) in
+                    guard let image = image else { return }
+                    
+                    cover = image
                 }
             }
     }

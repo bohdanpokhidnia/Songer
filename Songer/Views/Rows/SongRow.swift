@@ -37,11 +37,13 @@ struct SongRow: View {
                     .font(.body)
                 
                 if let author = author {
+                    Spacer()
+                    
                     Text(author)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-            }
+            }.frame(height: 50)
             
             Spacer()
         }

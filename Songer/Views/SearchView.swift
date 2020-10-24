@@ -12,15 +12,20 @@ struct SearchView: View {
     
     @State private var searchText: String = "Oxxxymiron"
     @State private var songs: [SongInfo] = []
+    @State private var showSong: Bool = false
     
     var body: some View {
         VStack{
             HStack{
-                TextField("Artist name", text: $searchText)
+                TextField("Enter text", text: $searchText)
                 Spacer()
                 Button("Search") {
                     
-                    ItunesService().fetchSongsByArtist(query: searchText) { (songs) in
+                    songs.removeAll()
+                    
+                    ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
+                        guard let songs = songs else { return }
+                        
                         self.songs = songs
                     }
                     
@@ -32,12 +37,17 @@ struct SearchView: View {
                     
                     Button(action: {
                         print(song.trackName)
+                        showSong.toggle()
                     }, label: {
-                        SongRow(urlImage: song.artWorkURL, songName: song.trackName, author: song.artistName)
+                        SongRow(urlImage: song.artworkUrl350, songName: song.trackName, author: song.artistName)
                     })
+                    .sheet(isPresented: $showSong) {
+                        SongInfoView(songInfo: song)
+                    }
                 }
             }
         }
+        
     }
 }
 

@@ -50,16 +50,19 @@ struct AddMusicView: View {
                         
                         if !name.isEmpty && !artist.isEmpty {
                             
-                            ItunesService().fetchTrackByArtist(artistName: artist, songName: name) { (song) in
+                            ItunesDataFetcher().fetchTrackByArtist(artistName: artist, trackName: name) { (song) in
+                                guard let song = song else { return }
                                 
-                                ItunesService().fetchURLImage(urlString: song.artWorkURL) { (image) in
+                                ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { (image) in
+                                    guard let image = image else { return }
+                                    
                                     pictures = Image(uiImage: image)
                                     inputImage = image
+                                    
                                 }
                                 
-                                album = song.collectionName
-                                
-                                date = stringToDate(song.stringDate, "yyyy.MM.dd")
+                                album = song.collectionName ?? song.trackName
+                                date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
                             }
                             
                         } else {
@@ -136,33 +139,7 @@ struct AddMusicView: View {
         }
         self.text = song.text
         self.pictures = Image(uiImage: UIImage(data: song.pictures)!)
-        self.date = stringToDate(song.date)
-    }
-    
-    private func dateToString(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        
-        dateFormatter.locale = Locale.init(identifier: "en_GB")
-        
-        let dateString = dateFormatter.string(from: date)
-        
-        return dateString
-    }
-    
-    private func stringToDate(_ stringDate: String, _ format: String = "dd.MM.yyyy") -> Date {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = format
-        
-        let date = dateFormatter.date(from: stringDate)
-        
-        if let date = date {
-            return date
-        } else {
-            return Date()
-        }
+        self.date = StringDateFormatter().stringToDate(song.date)
     }
     
     private func checkFields() -> Bool {
@@ -180,7 +157,7 @@ struct AddMusicView: View {
         newSong.album = self.album
         newSong.name = self.name
         newSong.text = self.text
-        newSong.date = self.dateToString(self.date)
+        newSong.date = StringDateFormatter().dateToString(self.date)
         
         if let inputImage = self.inputImage {
             newSong.pictures = inputImage.pngData()!
@@ -195,7 +172,7 @@ struct AddMusicView: View {
         do {
             try self.managedObjectContext.save()
         } catch {
-            print(error.localizedDescription)
+            print("Failed on save new music to DB: ", error)
         }
         
         self.presentationMode.wrappedValue.dismiss()
@@ -225,7 +202,7 @@ struct AddMusicView: View {
                 
                 song.featArtists = [self.featArtist]
                 song.text = self.text
-                song.date = self.dateToString(self.date)
+                song.date = StringDateFormatter().dateToString(self.date)
                 
                 try? managedObjectContext.save()
             }

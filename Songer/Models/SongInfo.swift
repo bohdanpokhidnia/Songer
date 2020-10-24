@@ -9,50 +9,50 @@
 import Foundation
 import UIKit
 
-struct SongInfoModel: Codable {
+struct SearchResponse: Decodable {
     let resultCount: Int
     let results: [SongInfo]
 }
 
-struct SongInfo: Codable, Identifiable {
+struct SongInfo: Decodable, Identifiable {
     let id = UUID()
     
     let wrapperType: String
     let kind: String
     let artistId: Int
-    let collectionId: Int
+    let collectionId: Int?
     let trackId: Int
     let artistName: String
-    let collectionName: String
+    let collectionName: String?
     let trackName: String
-    let collectionCensoredName: String
+    let collectionCensoredName: String?
     let trackCensoredName: String
     let artistViewUrl: String
-    let collectionViewUrl: String
+    let collectionViewUrl: String?
     let trackViewUrl: String
-    let previewUrl: String
+    let previewUrl: String?
     let artworkUrl30: String
-    let artworkUrl60: String
-    let artworkUrl100: String
+    let artworkUrl60: String?
+    let artworkUrl100: String?
     let collectionPrice: Double?
     let trackPrice: Double?
     let releaseDate: String
     let collectionExplicitness: String
     let trackExplicitness: String
-    let discCount: Int
-    let discNumber: Int
-    let trackCount: Int
-    let trackNumber: Int
-    let trackTimeMillis: Int
+    let discCount: Int?
+    let discNumber: Int?
+    let trackCount: Int?
+    let trackNumber: Int?
+    let trackTimeMillis: Int?
     let primaryGenreName: String
 }
 
 extension SongInfo {
     
-    var artWorkURL: String {
-        var url = self.artworkUrl100
+    var artworkUrl350: String {
+        var url = self.artworkUrl30
         
-        let range = url.index(url.endIndex, offsetBy: -13)..<url.endIndex
+        let range = url.index(url.endIndex, offsetBy: -11)..<url.endIndex
         
         url.removeSubrange(range)
         
@@ -73,13 +73,13 @@ extension SongInfo {
         
     }
     
-    var cover: UIImage {
-        var pictures = UIImage(named: "cover")!
+    var roundPrice: String? {
         
-        ItunesService().fetchURLImage(urlString: self.artWorkURL) { (image) in
-            pictures = image
+        if let price = self.trackPrice {
+            
+            return String(format: "%.2f", price)
         }
         
-        return pictures
+        return nil
     }
 }

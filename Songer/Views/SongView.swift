@@ -14,11 +14,9 @@ struct SongView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var song: Music
     
-    @Environment(\.colorScheme) var colorScheme
-    
     @State private var showEditMusicView: Bool = false
     @State private var showSheets: Bool = false
-
+    @State private var dateString: String = ""
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
@@ -64,7 +62,6 @@ struct SongView: View {
                             }, label: {
                                 Image(systemName: "ellipsis.circle")
                                     .resizable()
-                                    .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .frame(width: 30, height: 30)
                             })
                         }
@@ -83,7 +80,7 @@ struct SongView: View {
                            alignment: .topLeading)
                     .padding(.horizontal)
                 
-                Text(song.date)
+                Text(dateString)
                     .font(.caption)
                     .padding(.top, 10)
                 
@@ -97,8 +94,12 @@ struct SongView: View {
                             buttons: [.default(Text("Edit music"), action: {
                                 showEditMusicView.toggle()
                             }), .cancel()])
-            
         }
+            .onAppear {
+                if let date = StringDateFormatter().formatStringDate(song.date, "dd.MM.yyyy", .long) {
+                    self.dateString = date
+                }
+            }
        
     }
     
