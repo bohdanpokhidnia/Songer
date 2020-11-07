@@ -35,8 +35,8 @@ class ItunesDataFetcher {
         
         fetchSongsByArtist(query: artistName) { (songs) in
             guard let songs = songs else { return }
-            
-            songs.map { (song) in
+        
+            for song in songs {
                 if song.trackName == trackName {
                     response(song)
                     return
@@ -53,7 +53,7 @@ class ItunesDataFetcher {
             
             case .success(let data):
                 response(UIImage(data: data))
-            case .failure(let error):
+            case .failure(_):
                 response(nil)
             }
         }

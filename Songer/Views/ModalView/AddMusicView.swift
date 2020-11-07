@@ -20,8 +20,8 @@ struct AddMusicView: View {
     @State private var pictures: Image?
     @State private var inputImage: UIImage?
     
-    @State private var name: String = "Где нас нет"
-    @State private var artist: String = "Oxxxymiron"
+    @State private var name: String = "El Problema"
+    @State private var artist: String = "Morgenshtern"
     @State private var album: String = ""
     @State private var text: String = ""
     @State private var featArtist: String = ""
@@ -62,6 +62,13 @@ struct AddMusicView: View {
                                 }
                                 
                                 album = song.collectionName ?? song.trackName
+                                
+                                text = "Text song..."
+                                
+//                                print(song.stringDate)
+                                
+//                                print(StringDateFormatter().stringToDate("05.12.2000"))
+                                
                                 date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
                             }
                             

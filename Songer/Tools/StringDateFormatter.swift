@@ -25,10 +25,9 @@ class StringDateFormatter {
         return dateString
     }
     
-    func stringToDate(_ stringDate: String, _ format: String = "dd.MM.yyyy", _ dateStyle: DateFormatter.Style = .none) -> Date {
+    func stringToDate(_ stringDate: String, _ format: String = "dd.MM.yyyy") -> Date {
         
         dateFormatter.dateFormat = format
-        dateFormatter.dateStyle = dateStyle
         
         let date = dateFormatter.date(from: stringDate)
         

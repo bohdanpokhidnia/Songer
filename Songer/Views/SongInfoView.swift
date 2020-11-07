@@ -13,7 +13,7 @@ struct SongInfoView: View {
     var songInfo: SongInfo
     
     @State private var price: String = "Free"
-    @State private var date: String = "20.01.2000"
+    @State private var date: String = "00.00.0000"
     
     var body: some View {
         
