@@ -158,29 +158,17 @@ struct AddMusicView: View {
     }
     
     private func addMusic() {
-        let newSong = Music(context: self.managedObjectContext)
         
-        newSong.artist = self.artist
-        newSong.album = self.album
-        newSong.name = self.name
-        newSong.text = self.text
-        newSong.date = StringDateFormatter().dateToString(self.date)
+        var date = StringDateFormatter().dateToString(self.date)
+        var pictures = UIImage(named: "cover")!.pngData()!
         
         if let inputImage = self.inputImage {
-            newSong.pictures = inputImage.pngData()!
-        } else {
-            newSong.pictures = UIImage(named: "cover")!.pngData()!
+            pictures = inputImage.pngData()!
         }
         
-        if !self.featArtist.isEmpty {
-            newSong.featArtists = [self.featArtist]
-        }
+        let databaseManager = DatabaseManager(managedObjectContext: self.managedObjectContext)
         
-        do {
-            try self.managedObjectContext.save()
-        } catch {
-            print("Failed on save new music to DB: ", error)
-        }
+        databaseManager.addSong(name: self.name, artist: self.artist, album: self.album, pictures: pictures, text: self.text, date: date)
         
         self.presentationMode.wrappedValue.dismiss()
     }

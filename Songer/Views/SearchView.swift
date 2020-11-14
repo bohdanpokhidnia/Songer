@@ -23,11 +23,7 @@ struct SearchView: View {
                     
                     songs.removeAll()
                     
-                    ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
-                        guard let songs = songs else { return }
-                        
-                        self.songs = songs
-                    }
+                    searchSongs()
                     
                 }
             }.padding()
@@ -39,7 +35,10 @@ struct SearchView: View {
                         print(song.trackName)
                         showSong.toggle()
                     }, label: {
-                        SongRow(urlImage: song.artworkUrl350, songName: song.trackName, author: song.artistName)
+                        SongRow(isAddButtonShow: true,
+                                urlImage: song.artworkUrl350,
+                                songName: song.trackName,
+                                author: song.artistName)
                     })
                     .sheet(isPresented: $showSong) {
                         SongInfoView(songInfo: song)
@@ -48,6 +47,14 @@ struct SearchView: View {
             }
         }
         
+    }
+    
+    private func searchSongs() {
+        ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
+            guard let songs = songs else { return }
+            
+            self.songs = songs
+        }
     }
 }
 

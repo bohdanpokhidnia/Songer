@@ -48,29 +48,6 @@ class ItunesService {
         task.resume()
     }
     
-//    func requestTrackByArtist(artistName: String, songName: String, completion: @escaping (SongInfo) -> ()) {
-//
-//        requestSongsByArtist(query: artistName) { (songs) in
-//
-//
-//
-//            switch result {
-//
-//            case .success(let songs):
-//                songs.map { (song)  in
-//                    if song.trackName == songName {
-//                        completion(song)
-//                        return
-//                    }
-//                }
-//            case .failure(let error):
-//                print("error: ", error)
-//            }
-//
-//        }
-//
-//    }
-    
     func requestSongsByArtist(query: String, completion: @escaping (Result<Data, Error>) -> () ) {
         
         searchURLComponents.queryItems = [

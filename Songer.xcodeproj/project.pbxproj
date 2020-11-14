@@ -34,6 +34,7 @@
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
 		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
 		F7DE4045254358940026B30F /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4044254358940026B30F /* SongInfoView.swift */; };
+		F7E2A97E256043230055FD04 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2A97D256043230055FD04 /* DatabaseManager.swift */; };
 		F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F209EC251CFCB4001A4111 /* FilteredList.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
 		F7DE4044254358940026B30F /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
+		F7E2A97D256043230055FD04 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		F7F209EC251CFCB4001A4111 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 			children = (
 				F7AF10502540309F003CC380 /* ItunesService.swift */,
 				F7DE403E254346560026B30F /* ItunesDataFetcher.swift */,
+				F7E2A97D256043230055FD04 /* DatabaseManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			files = (
 				F77EACFA24F2ED2B00F5D105 /* Music.swift in Sources */,
 				F77EACE624F2ECF600F5D105 /* AppDelegate.swift in Sources */,
+				F7E2A97E256043230055FD04 /* DatabaseManager.swift in Sources */,
 				F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */,
 				F7DE4045254358940026B30F /* SongInfoView.swift in Sources */,
 				F77EACFE24F2F18100F5D105 /* SongView.swift in Sources */,

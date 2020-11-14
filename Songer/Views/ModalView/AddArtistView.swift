@@ -21,8 +21,6 @@ struct AddArtistView: View {
     @State private var showingImagePicker: Bool = false
     @State private var inputImage: UIImage?
     
-    
-    
     var body: some View {
         NavigationView {
             Form {
@@ -53,18 +51,7 @@ struct AddArtistView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Add") {
                 
-                let artist = MusicArtist(context: self.managedObjectContext)
-                artist.name = self.name
-                artist.pictures = self.inputImage!.pngData()!
-                
-                do {
-                    try self.managedObjectContext.save()
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
-                self.presentationMode.wrappedValue.dismiss()
-                
+                self.addArtist()
                 
             })
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage, content: {
@@ -78,6 +65,12 @@ struct AddArtistView: View {
         guard let inputImage = inputImage else { return }
         
         pictures = Image(uiImage: inputImage)
+    }
+    
+    func addArtist() {
+        let databaseManager = DatabaseManager(managedObjectContext: self.managedObjectContext)
+        
+        databaseManager.addArtist(artistName: self.name, artistPictures: self.inputImage!.pngData()!)
     }
 }
 

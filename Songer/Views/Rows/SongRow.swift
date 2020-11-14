@@ -11,10 +11,10 @@ import UIKit
 
 struct SongRow: View {
     
+    var isAddButtonShow: Bool?
     var pictures: UIImage?
     var urlImage: String?
     var songName: String
-    
     var author: String?
     
     var body: some View {
@@ -46,6 +46,16 @@ struct SongRow: View {
             }.frame(height: 50)
             
             Spacer()
+            
+            if isAddButtonShow != nil {
+                Button(action: {
+                    print("ok")
+                }, label: {
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                })
+            }
         }
     }
 }
@@ -58,6 +68,9 @@ struct SongRow_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        SongRow(pictures: image, songName: title, author: author)
+        SongRow(isAddButtonShow: true,
+                pictures: image,
+                songName: title,
+                author: author)
     }
 }
