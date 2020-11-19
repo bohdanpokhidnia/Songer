@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct SearchView: View {
-    
-    @State private var searchText: String = "Oxxxymiron"
-    @State private var songs: [SongInfo] = []
-    @State private var showSong: Bool = false
     @Environment(\.managedObjectContext) var viewContext
+    @State private var songs: [SongInfo] = []
+    @State private var searchText: String = "Morgenshtern"
+    @State private var showSong: Bool = false
+    
+    private var imageCache = ImageCache.getImageCache()
     
     var body: some View {
         VStack{
@@ -25,7 +26,6 @@ struct SearchView: View {
                     songs.removeAll()
                     
                     searchSongs()
-                    
                 }
             }.padding()
             
@@ -52,19 +52,17 @@ struct SearchView: View {
     }
     
     private func addSong(_ song: SongInfo) {
+        
         let newSong = Music(context: self.viewContext)
 
+        newSong.pictures = imageCache.get(forKey: song.artworkUrl350)!.jpegData(compressionQuality: 1.0)!
+        
         newSong.name = song.trackName
         newSong.artist = song.artistName
         newSong.album = song.album
-        newSong.date = song.stringDate
         newSong.text = "Text song..."
+        newSong.date = "song.stringDate"
         
-        ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { image in
-            if let image = image {
-                newSong.pictures = image.pngData()!
-            }
-        }
         
         do {
             try self.viewContext.save()

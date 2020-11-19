@@ -35,7 +35,10 @@ struct AddArtistView: View {
                         DeezerDataFetcher().fetchArtistPicture(artistName: name) { uiimage in
                             if let image = uiimage {
                                 self.inputImage = image
-                                self.pictures = Image(uiImage: image)
+                                withAnimation {
+                                    self.pictures = Image(uiImage: image)
+                                }
+                                
                             } else {
                                 print("dont found image")
                             }
@@ -49,6 +52,7 @@ struct AddArtistView: View {
                         
                         if let pictures = pictures {
                             PersonView(image: pictures)
+                                .animation(.default)
                         } else {
                             PersonView(image: Image("person"))
                         }

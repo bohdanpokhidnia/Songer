@@ -28,10 +28,11 @@ struct SongList: View {
             }, label: {
 
                 if let pictures = song.pictures {
-                    SongCell(pictures: pictures, songName: song.name, author: song.artist, action: {})
+                    SongCell(preview: UIImage(data: pictures) ?? UIImage(named: "cover")!,
+                             songName: song.name,
+                             author: song.artist,
+                             action: {})
                 }
-                
-//                SongCell(pictures: UIImage(data: song.pictures)!, songName: song.name, author: song.artist, action: {})
 
             }).sheet(isPresented: $showMusicView){
                 SongView().environmentObject(song)
@@ -48,7 +49,6 @@ struct SongList: View {
         }).sheet(isPresented: $showAddMusicView, content: {
             AddMusicView().environment(\.managedObjectContext, managedObjectContext)
         }))
-        
     }
 }
 

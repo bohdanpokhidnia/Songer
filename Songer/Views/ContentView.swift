@@ -25,21 +25,21 @@ struct ContentView: View {
                 ArtistsList()
                     .tabItem {
                         Image(systemName: "rectangle.stack.person.crop.fill")
-                            .imageScale(.large)
+                            .font(.largeTitle)
                         Text("Artists")
                     }
                 
                 SongList()
                     .tabItem {
                         Image(systemName: "music.note.list")
-                            .imageScale(.large)
+                            .font(.largeTitle)
                         Text("Songs")
                     }
                 
                 SearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
-                            .imageScale(.large)
+                            .font(.largeTitle)
                         Text("Search")
                     }
                 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Music" representedClassName=".Music" syncable="YES">
         <attribute name="album" optional="YES" attributeType="String"/>
         <attribute name="artist" optional="YES" attributeType="String" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="featArtists" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="pictures" optional="YES" attributeType="Binary"/>
+        <attribute name="pictures" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
     </entity>
     <entity name="MusicArtist" representedClassName=".MusicArtist" syncable="YES">
@@ -14,7 +14,7 @@
         <attribute name="pictures" optional="YES" attributeType="Binary"/>
     </entity>
     <elements>
-        <element name="Music" positionX="-54" positionY="9" width="128" height="148"/>
+        <element name="Music" positionX="-54" positionY="9" width="128" height="134"/>
         <element name="MusicArtist" positionX="-54" positionY="-9" width="128" height="73"/>
     </elements>
 </model>

@@ -50,23 +50,7 @@ struct AddMusicView: View {
                         
                         if !name.isEmpty && !artist.isEmpty {
                             
-                            ItunesDataFetcher().fetchTrackByArtist(artistName: artist, trackName: name) { (song) in
-                                guard let song = song else { return }
-                                
-                                ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { (image) in
-                                    guard let image = image else { return }
-                                    
-                                    pictures = Image(uiImage: image)
-                                    inputImage = image
-                                    
-                                }
-                                
-                                album = song.album
-                                
-                                text = "Text song..."
-                                
-                                date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
-                            }
+                            self.searchInfo()
                             
                         } else {
                             showingAlert.toggle()
@@ -85,6 +69,7 @@ struct AddMusicView: View {
                         
                         if let pictures = pictures {
                             CoverView(image: pictures)
+                                .animation(.default)
                         } else {
                             CoverView(image: Image("cover"))
                         }
@@ -133,6 +118,28 @@ struct AddMusicView: View {
         }
     }
     
+    private func searchInfo() {
+        ItunesDataFetcher().fetchTrackByArtist(artistName: artist, trackName: name) { (song) in
+            guard let song = song else { return }
+            
+            ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { (image) in
+                guard let image = image else { return }
+                
+                withAnimation {
+                    pictures = Image(uiImage: image)
+                }
+                inputImage = image
+                
+            }
+            
+            album = song.album
+            
+            text = "Text song..."
+            
+            date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
+        }
+    }
+    
     private func setFields(_ song: Music) {
         self.name = song.name
         self.artist = song.artist
@@ -157,35 +164,30 @@ struct AddMusicView: View {
       
         let newSong = Music(context: self.managedObjectContext)
         
-        let date = StringDateFormatter().dateToString(self.date)
+        let newDate = StringDateFormatter().dateToString(self.date)
         
         var pictures = UIImage(named: "cover")!.pngData()!
         
         if let inputImage = self.inputImage {
-            pictures = inputImage.pngData()!
+            pictures = inputImage.jpegData(compressionQuality: 1.0)!
         }
         
         newSong.artist = self.artist
         newSong.album = self.album
         newSong.name = self.name
         newSong.text = self.text
-        newSong.date = date
+        newSong.date = newDate
         newSong.pictures = pictures
         
         if !self.featArtist.isEmpty {
             newSong.featArtists = [self.featArtist]
         }
-        
+
         do {
             try self.managedObjectContext.save()
         } catch {
-            print(error.localizedDescription)
+            print("Error when add song - \(error)")
         }
-        
-        
-//        let databaseManager = CoreDataManager(managedObjectContext: self.managedObjectContext)
-//
-//        databaseManager.addSong(name: self.name, artist: self.artist, album: self.album, pictures: pictures, text: self.text, date: date)
         
         self.presentationMode.wrappedValue.dismiss()
     }
@@ -216,7 +218,11 @@ struct AddMusicView: View {
                 song.text = self.text
                 song.date = StringDateFormatter().dateToString(self.date)
                 
-                try? managedObjectContext.save()
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    print("error when update fields - \(error)")
+                }
             }
             self.presentationMode.wrappedValue.dismiss()
         } else {

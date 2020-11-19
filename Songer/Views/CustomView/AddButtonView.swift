@@ -14,16 +14,15 @@ struct AddButtonView: View {
     var title: String
     var width: CGFloat?
     var height: CGFloat?
-    var color = Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+    var color = Color(UIColor.systemFill)
     
     var action: () -> ()
     
     var body: some View {
         ZStack {
-            
             RoundedRectangle(cornerRadius: 60)
                 .frame(width: show ? 0 : width ?? 80, height: height ?? 40)
-                .foregroundColor(color.opacity(0.65))
+                .foregroundColor(color)
             
             Text(title)
                 .font(.body)
@@ -44,6 +43,7 @@ struct AddButtonView: View {
 struct AddButtonView_Previews: PreviewProvider {
     
     static var previews: some View {
-        AddButtonView(show: .constant(true), title: "Button", action: {})
+        AddButtonView(show: .constant(false), title: "Button", action: {})
+            
     }
 }

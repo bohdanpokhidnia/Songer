@@ -32,6 +32,8 @@
 		F7AF10512540309F003CC380 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF10502540309F003CC380 /* NetworkService.swift */; };
 		F7AF105625403137003CC380 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF105525403137003CC380 /* URLImageView.swift */; };
 		F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B103D72500E60700C895FE /* AddArtistView.swift */; };
+		F7BB027B2566EEAC00946ED2 /* UrlImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB027A2566EEAC00946ED2 /* UrlImageModel.swift */; };
+		F7BB027E2566F12A00946ED2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB027D2566F12A00946ED2 /* ImageCache.swift */; };
 		F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */; };
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
 		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
@@ -69,6 +71,8 @@
 		F7AF10502540309F003CC380 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F7AF105525403137003CC380 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		F7B103D72500E60700C895FE /* AddArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArtistView.swift; sourceTree = "<group>"; };
+		F7BB027A2566EEAC00946ED2 /* UrlImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlImageModel.swift; sourceTree = "<group>"; };
+		F7BB027D2566F12A00946ED2 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateFormatter.swift; sourceTree = "<group>"; };
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 				F77EACF924F2ED2B00F5D105 /* Music.swift */,
 				F7AF104B25402FFC003CC380 /* SongInfo.swift */,
 				F72E157225668C740075ECAB /* ArtistInfo.swift */,
+				F7BB027A2566EEAC00946ED2 /* UrlImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */,
+				F7BB027D2566F12A00946ED2 /* ImageCache.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BB027E2566F12A00946ED2 /* ImageCache.swift in Sources */,
 				F70043B0256696C500330DFD /* DeezerDataFetcher.swift in Sources */,
 				F77EACFA24F2ED2B00F5D105 /* Music.swift in Sources */,
 				F77EACE624F2ECF600F5D105 /* AppDelegate.swift in Sources */,
@@ -322,6 +329,7 @@
 				F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */,
 				F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */,
 				F77EACEA24F2ECF600F5D105 /* ContentView.swift in Sources */,
+				F7BB027B2566EEAC00946ED2 /* UrlImageModel.swift in Sources */,
 				F7AF105625403137003CC380 /* URLImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

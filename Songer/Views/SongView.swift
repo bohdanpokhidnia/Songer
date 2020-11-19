@@ -29,7 +29,7 @@ struct SongView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     VStack {
-                        Image(uiImage: UIImage(data: song.pictures)!)
+                        Image(uiImage: UIImage(data: song.pictures) ?? UIImage(named: "cover")!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 350, height: 350)

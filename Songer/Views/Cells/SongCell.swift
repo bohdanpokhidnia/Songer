@@ -12,7 +12,7 @@ import UIKit
 struct SongCell: View {
     
     var isAddButtonShow: Bool?
-    var pictures: Data?
+    var preview: UIImage?
     var urlImage: String?
     var songName: String
     var author: String?
@@ -28,19 +28,12 @@ struct SongCell: View {
                 URLImageView(urlString: cover)
                 
             } else {
-            
-                if let pictures = pictures {
-                    Image(uiImage: UIImage(data: pictures) ?? UIImage(named:"cover")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                }
-                
-//                Image(uiImage: pictures ?? UIImage(named: "cover")!)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 50, height: 50)
+                Image(uiImage: preview ?? UIImage(named: "cover")!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
             }
+            
             
             VStack(alignment: .leading) {
                 Text(songName)
@@ -77,7 +70,6 @@ struct SongRow_Previews: PreviewProvider {
     static var previews: some View {
         
         SongCell(isAddButtonShow: true,
-                pictures: image,
                 songName: title,
                 author: author, action: {})
     }
