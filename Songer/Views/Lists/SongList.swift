@@ -27,7 +27,11 @@ struct SongList: View {
                 showMusicView.toggle()
             }, label: {
 
-                SongRow(pictures: UIImage(data: song.pictures)!, songName: song.name, author: song.artist)
+                if let pictures = song.pictures {
+                    SongCell(pictures: pictures, songName: song.name, author: song.artist, action: {})
+                }
+                
+//                SongCell(pictures: UIImage(data: song.pictures)!, songName: song.name, author: song.artist, action: {})
 
             }).sheet(isPresented: $showMusicView){
                 SongView().environmentObject(song)

@@ -6,11 +6,11 @@
 //  Copyright © 2020 Bogdan Pohidnya. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 
 class ItunesDataFetcher {
-    let itunesService = ItunesService()
+    let itunesService = NetworkService(.itunes)
     
     func fetchSongsByArtist(query: String, response: @escaping ([SongInfo]?) -> ()) {
         itunesService.requestSongsByArtist(query: query) { (result) in

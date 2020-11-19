@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F70043B0256696C500330DFD /* DeezerDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70043AF256696C500330DFD /* DeezerDataFetcher.swift */; };
 		F703FD3124F3AFC300509C6A /* MusicArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = F703FD3024F3AFC300509C6A /* MusicArtist.swift */; };
 		F703FD3324F3B6A500509C6A /* ArtistRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F703FD3224F3B6A500509C6A /* ArtistRow.swift */; };
 		F72B3A272517ED0C00A1B18B /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72B3A262517ED0C00A1B18B /* CoverView.swift */; };
 		F72B3A2B2517EE5300A1B18B /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72B3A2A2517EE5300A1B18B /* PersonView.swift */; };
+		F72E157325668C740075ECAB /* ArtistInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72E157225668C740075ECAB /* ArtistInfo.swift */; };
 		F73BB9C124F6D25B00520777 /* AddMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73BB9C024F6D25B00520777 /* AddMusicView.swift */; };
 		F743D45425121AAB002E5F61 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F743D45325121AAB002E5F61 /* TextView.swift */; };
 		F747B9752542A6D8005F368F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F747B9742542A6D8005F368F /* SearchView.swift */; };
@@ -25,25 +27,27 @@
 		F77EAD0224F30F7300F5D105 /* ArtistsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77EAD0124F30F7300F5D105 /* ArtistsList.swift */; };
 		F77EAD0424F31E8A00F5D105 /* SongList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77EAD0324F31E8A00F5D105 /* SongList.swift */; };
 		F794B51B24F4C5BC00173D34 /* Songer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F794B51924F4C5BC00173D34 /* Songer.xcdatamodeld */; };
-		F79B5C932503CE1F000F5FAE /* SongRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79B5C922503CE1F000F5FAE /* SongRow.swift */; };
+		F79B5C932503CE1F000F5FAE /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79B5C922503CE1F000F5FAE /* SongCell.swift */; };
 		F7AF104C25402FFC003CC380 /* SongInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF104B25402FFC003CC380 /* SongInfo.swift */; };
-		F7AF10512540309F003CC380 /* ItunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF10502540309F003CC380 /* ItunesService.swift */; };
+		F7AF10512540309F003CC380 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF10502540309F003CC380 /* NetworkService.swift */; };
 		F7AF105625403137003CC380 /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF105525403137003CC380 /* URLImageView.swift */; };
 		F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B103D72500E60700C895FE /* AddArtistView.swift */; };
 		F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */; };
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
 		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
 		F7DE4045254358940026B30F /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4044254358940026B30F /* SongInfoView.swift */; };
-		F7E2A97E256043230055FD04 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E2A97D256043230055FD04 /* DatabaseManager.swift */; };
+		F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */; };
 		F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F209EC251CFCB4001A4111 /* FilteredList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		596BBBF54947DA3D9DA050A8 /* libPods-Songer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Songer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70043AF256696C500330DFD /* DeezerDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerDataFetcher.swift; sourceTree = "<group>"; };
 		F703FD3024F3AFC300509C6A /* MusicArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicArtist.swift; sourceTree = "<group>"; };
 		F703FD3224F3B6A500509C6A /* ArtistRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistRow.swift; sourceTree = "<group>"; };
 		F72B3A262517ED0C00A1B18B /* CoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverView.swift; sourceTree = "<group>"; };
 		F72B3A2A2517EE5300A1B18B /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		F72E157225668C740075ECAB /* ArtistInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistInfo.swift; sourceTree = "<group>"; };
 		F73BB9C024F6D25B00520777 /* AddMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicView.swift; sourceTree = "<group>"; };
 		F743D45325121AAB002E5F61 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		F747B9742542A6D8005F368F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -60,16 +64,16 @@
 		F77EAD0124F30F7300F5D105 /* ArtistsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsList.swift; sourceTree = "<group>"; };
 		F77EAD0324F31E8A00F5D105 /* SongList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongList.swift; sourceTree = "<group>"; };
 		F794B51A24F4C5BC00173D34 /* Songer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Songer.xcdatamodel; sourceTree = "<group>"; };
-		F79B5C922503CE1F000F5FAE /* SongRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRow.swift; sourceTree = "<group>"; };
+		F79B5C922503CE1F000F5FAE /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		F7AF104B25402FFC003CC380 /* SongInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfo.swift; sourceTree = "<group>"; };
-		F7AF10502540309F003CC380 /* ItunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesService.swift; sourceTree = "<group>"; };
+		F7AF10502540309F003CC380 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F7AF105525403137003CC380 /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
 		F7B103D72500E60700C895FE /* AddArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArtistView.swift; sourceTree = "<group>"; };
 		F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateFormatter.swift; sourceTree = "<group>"; };
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
 		F7DE4044254358940026B30F /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
-		F7E2A97D256043230055FD04 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		F7F209EC251CFCB4001A4111 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +105,7 @@
 				F72B3A2A2517EE5300A1B18B /* PersonView.swift */,
 				F7F209EC251CFCB4001A4111 /* FilteredList.swift */,
 				F7AF105525403137003CC380 /* URLImageView.swift */,
+				F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				F703FD3024F3AFC300509C6A /* MusicArtist.swift */,
 				F77EACF924F2ED2B00F5D105 /* Music.swift */,
 				F7AF104B25402FFC003CC380 /* SongInfo.swift */,
+				F72E157225668C740075ECAB /* ArtistInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,7 +170,7 @@
 				F7CA2ED12541D49E0085FD26 /* Lists */,
 				F740C63725080FC4009B1410 /* CustomView */,
 				F7B103D92500E67C00C895FE /* ModalView */,
-				F79B5C942503CE24000F5FAE /* Rows */,
+				F79B5C942503CE24000F5FAE /* Cells */,
 				F7DE4044254358940026B30F /* SongInfoView.swift */,
 				F77EACFD24F2F18100F5D105 /* SongView.swift */,
 				F747B9742542A6D8005F368F /* SearchView.swift */,
@@ -173,21 +179,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F79B5C942503CE24000F5FAE /* Rows */ = {
+		F79B5C942503CE24000F5FAE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F79B5C922503CE1F000F5FAE /* SongRow.swift */,
+				F79B5C922503CE1F000F5FAE /* SongCell.swift */,
 				F703FD3224F3B6A500509C6A /* ArtistRow.swift */,
 			);
-			path = Rows;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F7AF104F25403030003CC380 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F7AF10502540309F003CC380 /* ItunesService.swift */,
+				F7AF10502540309F003CC380 /* NetworkService.swift */,
 				F7DE403E254346560026B30F /* ItunesDataFetcher.swift */,
-				F7E2A97D256043230055FD04 /* DatabaseManager.swift */,
+				F70043AF256696C500330DFD /* DeezerDataFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -289,9 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F70043B0256696C500330DFD /* DeezerDataFetcher.swift in Sources */,
 				F77EACFA24F2ED2B00F5D105 /* Music.swift in Sources */,
 				F77EACE624F2ECF600F5D105 /* AppDelegate.swift in Sources */,
-				F7E2A97E256043230055FD04 /* DatabaseManager.swift in Sources */,
 				F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */,
 				F7DE4045254358940026B30F /* SongInfoView.swift in Sources */,
 				F77EACFE24F2F18100F5D105 /* SongView.swift in Sources */,
@@ -301,9 +307,10 @@
 				F703FD3124F3AFC300509C6A /* MusicArtist.swift in Sources */,
 				F77EAD0224F30F7300F5D105 /* ArtistsList.swift in Sources */,
 				F794B51B24F4C5BC00173D34 /* Songer.xcdatamodeld in Sources */,
-				F79B5C932503CE1F000F5FAE /* SongRow.swift in Sources */,
+				F79B5C932503CE1F000F5FAE /* SongCell.swift in Sources */,
 				F77EAD0424F31E8A00F5D105 /* SongList.swift in Sources */,
-				F7AF10512540309F003CC380 /* ItunesService.swift in Sources */,
+				F72E157325668C740075ECAB /* ArtistInfo.swift in Sources */,
+				F7AF10512540309F003CC380 /* NetworkService.swift in Sources */,
 				F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */,
 				F72B3A2B2517EE5300A1B18B /* PersonView.swift in Sources */,
 				F743D45425121AAB002E5F61 /* TextView.swift in Sources */,
@@ -313,6 +320,7 @@
 				F72B3A272517ED0C00A1B18B /* CoverView.swift in Sources */,
 				F77EACE824F2ECF600F5D105 /* SceneDelegate.swift in Sources */,
 				F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */,
+				F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */,
 				F77EACEA24F2ECF600F5D105 /* ContentView.swift in Sources */,
 				F7AF105625403137003CC380 /* URLImageView.swift in Sources */,
 			);

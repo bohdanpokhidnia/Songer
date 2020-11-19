@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bogdan Pohidnya. All rights reserved.
 //
 
-import Foundation
+
 import SwiftUI
 import CoreData
 

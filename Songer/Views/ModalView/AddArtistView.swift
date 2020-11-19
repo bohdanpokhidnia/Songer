@@ -15,7 +15,7 @@ struct AddArtistView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
-    @State private var name: String = ""
+    @State private var name: String = "Oxxxymiron"
     @State private var pictures: Image?
     
     @State private var showingImagePicker: Bool = false
@@ -27,6 +27,20 @@ struct AddArtistView: View {
                 
                 Section(header: Text("Artist name")) {
                     TextField("Name", text: $name)
+                }
+                
+                Section(header: Text("Auto"), footer: Text("Input name")) {
+                    Button("Search") {
+                        
+                        DeezerDataFetcher().fetchArtistPicture(artistName: name) { uiimage in
+                            if let image = uiimage {
+                                self.inputImage = image
+                                self.pictures = Image(uiImage: image)
+                            } else {
+                                print("dont found image")
+                            }
+                        }
+                    }
                 }
                 
                 Section(header: Text("Pictures")) {
@@ -68,9 +82,28 @@ struct AddArtistView: View {
     }
     
     func addArtist() {
-        let databaseManager = DatabaseManager(managedObjectContext: self.managedObjectContext)
         
-        databaseManager.addArtist(artistName: self.name, artistPictures: self.inputImage!.pngData()!)
+        print("add")
+        
+        let artist = MusicArtist(context: self.managedObjectContext)
+        artist.name = self.name
+        
+        var pictures = UIImage(named: "person")!.pngData()!
+        
+        if let artistPictures = self.inputImage?.pngData()! {
+            pictures = artistPictures
+        }
+        
+        artist.pictures = pictures
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        self.presentationMode.wrappedValue.dismiss()
+//        Daa.addArtist(artistName: self.name, artistPictures: self.inputImage!.pngData()!)
     }
 }
 

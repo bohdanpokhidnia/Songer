@@ -13,6 +13,7 @@ struct SearchView: View {
     @State private var searchText: String = "Oxxxymiron"
     @State private var songs: [SongInfo] = []
     @State private var showSong: Bool = false
+    @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {
         VStack{
@@ -32,13 +33,14 @@ struct SearchView: View {
                 ForEach(songs) { song in
                     
                     Button(action: {
-                        print(song.trackName)
                         showSong.toggle()
                     }, label: {
-                        SongRow(isAddButtonShow: true,
+                        SongCell(isAddButtonShow: true,
                                 urlImage: song.artworkUrl350,
                                 songName: song.trackName,
-                                author: song.artistName)
+                                author: song.artistName) {
+                            self.addSong(song)
+                        }
                     })
                     .sheet(isPresented: $showSong) {
                         SongInfoView(songInfo: song)
@@ -47,6 +49,28 @@ struct SearchView: View {
             }
         }
         
+    }
+    
+    private func addSong(_ song: SongInfo) {
+        let newSong = Music(context: self.viewContext)
+
+        newSong.name = song.trackName
+        newSong.artist = song.artistName
+        newSong.album = song.album
+        newSong.date = song.stringDate
+        newSong.text = "Text song..."
+        
+        ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { image in
+            if let image = image {
+                newSong.pictures = image.pngData()!
+            }
+        }
+        
+        do {
+            try self.viewContext.save()
+        } catch {
+            print(error)
+        }
     }
     
     private func searchSongs() {

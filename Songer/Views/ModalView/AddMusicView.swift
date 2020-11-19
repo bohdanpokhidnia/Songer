@@ -61,13 +61,9 @@ struct AddMusicView: View {
                                     
                                 }
                                 
-                                album = song.collectionName ?? song.trackName
+                                album = song.album
                                 
                                 text = "Text song..."
-                                
-//                                print(song.stringDate)
-                                
-//                                print(StringDateFormatter().stringToDate("05.12.2000"))
                                 
                                 date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
                             }
@@ -158,17 +154,38 @@ struct AddMusicView: View {
     }
     
     private func addMusic() {
+      
+        let newSong = Music(context: self.managedObjectContext)
         
-        var date = StringDateFormatter().dateToString(self.date)
+        let date = StringDateFormatter().dateToString(self.date)
+        
         var pictures = UIImage(named: "cover")!.pngData()!
         
         if let inputImage = self.inputImage {
             pictures = inputImage.pngData()!
         }
         
-        let databaseManager = DatabaseManager(managedObjectContext: self.managedObjectContext)
+        newSong.artist = self.artist
+        newSong.album = self.album
+        newSong.name = self.name
+        newSong.text = self.text
+        newSong.date = date
+        newSong.pictures = pictures
         
-        databaseManager.addSong(name: self.name, artist: self.artist, album: self.album, pictures: pictures, text: self.text, date: date)
+        if !self.featArtist.isEmpty {
+            newSong.featArtists = [self.featArtist]
+        }
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
+//        let databaseManager = CoreDataManager(managedObjectContext: self.managedObjectContext)
+//
+//        databaseManager.addSong(name: self.name, artist: self.artist, album: self.album, pictures: pictures, text: self.text, date: date)
         
         self.presentationMode.wrappedValue.dismiss()
     }

@@ -9,13 +9,16 @@
 import SwiftUI
 import UIKit
 
-struct SongRow: View {
+struct SongCell: View {
     
     var isAddButtonShow: Bool?
-    var pictures: UIImage?
+    var pictures: Data?
     var urlImage: String?
     var songName: String
     var author: String?
+    var action: () -> ()
+    
+    @State var isShowButton = false
     
     var body: some View {
         HStack {
@@ -26,10 +29,17 @@ struct SongRow: View {
                 
             } else {
             
-                Image(uiImage: pictures ?? UIImage(named: "cover")!)
-                    .resizable()
-                    .renderingMode(.original)
-                    .frame(width: 50, height: 50)
+                if let pictures = pictures {
+                    Image(uiImage: UIImage(data: pictures) ?? UIImage(named:"cover")!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                }
+                
+//                Image(uiImage: pictures ?? UIImage(named: "cover")!)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 50, height: 50)
             }
             
             VStack(alignment: .leading) {
@@ -48,29 +58,28 @@ struct SongRow: View {
             Spacer()
             
             if isAddButtonShow != nil {
-                Button(action: {
-                    print("ok")
-                }, label: {
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                })
+                AddButtonView(show: $isShowButton, title: "Add") {
+                    self.action()
+                }
             }
         }
+        .frame(height: 50)
+        .frame(maxWidth: .infinity)
     }
 }
 
 struct SongRow_Previews: PreviewProvider {
     
-    private static let image = UIImage(named: "cover")!
+    private static let image = UIImage(named: "cover")!.pngData()!
     private static let title = "Где нас нет"
     private static let author = "Oxxxymiron"
     
     static var previews: some View {
         
-        SongRow(isAddButtonShow: true,
+        SongCell(isAddButtonShow: true,
                 pictures: image,
                 songName: title,
-                author: author)
+                author: author, action: {})
     }
 }
+

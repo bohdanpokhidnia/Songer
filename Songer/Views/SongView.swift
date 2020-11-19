@@ -24,13 +24,14 @@ struct SongView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.gray)
                     .frame(width: 35, height: 5)
+                    .opacity(0.5)
                     .padding(.top, 20)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     VStack {
                         Image(uiImage: UIImage(data: song.pictures)!)
                             .resizable()
-                            .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 350, height: 350)
                             .cornerRadius(15)
                             .shadow(radius: 10)

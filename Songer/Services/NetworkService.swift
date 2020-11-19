@@ -9,15 +9,27 @@
 import Foundation
 import UIKit
 
-class ItunesService {
+enum ServiceType {
+    case itunes
+    case deezer
+}
+
+class NetworkService {
     
     private var searchURLComponents = URLComponents()
     
     
-    init() {
+    init(_ type: ServiceType) {
         searchURLComponents.scheme = "https"
-        searchURLComponents.host = "itunes.apple.com"
         searchURLComponents.path = "/search"
+        
+        switch type {
+        case .itunes:
+            searchURLComponents.host = "itunes.apple.com"
+        case .deezer:
+            searchURLComponents.host = "api.deezer.com"
+        }
+        
     }
     
     func requestURLImage(urlString: String, completion: @escaping (Result<Data, Error>) -> () ) {
@@ -48,7 +60,38 @@ class ItunesService {
         task.resume()
     }
     
-    func requestSongsByArtist(query: String, completion: @escaping (Result<Data, Error>) -> () ) {
+    func requestArist(query: String, completion: @escaping (Result<Data, Error>) -> ()){
+        searchURLComponents.queryItems  = [
+            URLQueryItem(name: "q", value: query)
+        ]
+        
+        guard let absoluteStringURL = searchURLComponents.url?.absoluteString else { return }
+        
+        guard let searchURL = URL(string: absoluteStringURL) else { return }
+        
+        let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
+            
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode != 200 {
+                        print("Status code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func requestSongsByArtist(query: String, completion: @escaping (Result<Data, Error>) -> ()) {
         
         searchURLComponents.queryItems = [
             URLQueryItem(name: "term", value: query),

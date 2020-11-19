@@ -17,8 +17,7 @@ struct ArtistRow: View {
         HStack {
             Image(uiImage: artistPictures)
                 .resizable()
-//                .renderingMode(.original)
-                .scaledToFill()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.black, lineWidth: 0.3))

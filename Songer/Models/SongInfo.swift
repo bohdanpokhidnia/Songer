@@ -6,7 +6,6 @@
 //  Copyright © 2020 Bogdan Pohidnya. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct SearchResponse: Decodable {
@@ -15,7 +14,7 @@ struct SearchResponse: Decodable {
 }
 
 struct SongInfo: Decodable, Identifiable {
-    let id = UUID()
+    let id = UUID().uuidString
     
     let wrapperType: String
     let kind: String
@@ -81,5 +80,15 @@ extension SongInfo {
         }
         
         return nil
+    }
+    
+    var album : String {
+        let name = "Single - "
+        
+        if let nameAlbum = self.collectionName {
+            return nameAlbum
+        } else {
+            return name + self.trackName
+        }
     }
 }
