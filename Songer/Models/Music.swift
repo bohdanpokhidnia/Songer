@@ -19,5 +19,6 @@ class Music: NSManagedObject, Identifiable {
     @NSManaged public var pictures: Data
     @NSManaged public var text: String
     @NSManaged public var date: String
+    @NSManaged public var previewUrl: String
     
 }

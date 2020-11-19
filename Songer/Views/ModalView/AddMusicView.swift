@@ -27,6 +27,7 @@ struct AddMusicView: View {
     @State private var featArtist: String = ""
     @State private var date: Date = Date()
     @State private var featArtists: [String] = []
+    @State private var previewUrl: String = "not found link"
     
     @State var navigationTitle: String = "Add music"
     @State var acceptButtonTitle: String = "Add"
@@ -132,6 +133,8 @@ struct AddMusicView: View {
                 
             }
             
+            previewUrl = song.trackViewUrl
+            
             album = song.album
             
             text = "Text song..."
@@ -176,8 +179,10 @@ struct AddMusicView: View {
         newSong.album = self.album
         newSong.name = self.name
         newSong.text = self.text
+        newSong.previewUrl = self.previewUrl
         newSong.date = newDate
         newSong.pictures = pictures
+        
         
         if !self.featArtist.isEmpty {
             newSong.featArtists = [self.featArtist]

@@ -34,12 +34,14 @@
 		F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B103D72500E60700C895FE /* AddArtistView.swift */; };
 		F7BB027B2566EEAC00946ED2 /* UrlImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB027A2566EEAC00946ED2 /* UrlImageModel.swift */; };
 		F7BB027E2566F12A00946ED2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB027D2566F12A00946ED2 /* ImageCache.swift */; };
+		F7BB02812566FE1800946ED2 /* PasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB02802566FE1800946ED2 /* PasteboardManager.swift */; };
 		F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */; };
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
 		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
 		F7DE4045254358940026B30F /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4044254358940026B30F /* SongInfoView.swift */; };
 		F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */; };
 		F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F209EC251CFCB4001A4111 /* FilteredList.swift */; };
+		F7F806FC256706B20049537D /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F806FB256706B20049537D /* ShareManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,12 +75,14 @@
 		F7B103D72500E60700C895FE /* AddArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArtistView.swift; sourceTree = "<group>"; };
 		F7BB027A2566EEAC00946ED2 /* UrlImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlImageModel.swift; sourceTree = "<group>"; };
 		F7BB027D2566F12A00946ED2 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		F7BB02802566FE1800946ED2 /* PasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManager.swift; sourceTree = "<group>"; };
 		F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateFormatter.swift; sourceTree = "<group>"; };
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
 		F7DE4044254358940026B30F /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
 		F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		F7F209EC251CFCB4001A4111 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
+		F7F806FB256706B20049537D /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,13 +176,10 @@
 		F77EACFC24F2F03A00F5D105 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F7CA2ED12541D49E0085FD26 /* Lists */,
+				F7BB02832566FF2C00946ED2 /* Main */,
 				F740C63725080FC4009B1410 /* CustomView */,
 				F7B103D92500E67C00C895FE /* ModalView */,
 				F79B5C942503CE24000F5FAE /* Cells */,
-				F7DE4044254358940026B30F /* SongInfoView.swift */,
-				F77EACFD24F2F18100F5D105 /* SongView.swift */,
-				F747B9742542A6D8005F368F /* SearchView.swift */,
 				F77EACE924F2ECF600F5D105 /* ContentView.swift */,
 			);
 			path = Views;
@@ -196,9 +197,11 @@
 		F7AF104F25403030003CC380 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F7BB02802566FE1800946ED2 /* PasteboardManager.swift */,
 				F7AF10502540309F003CC380 /* NetworkService.swift */,
 				F7DE403E254346560026B30F /* ItunesDataFetcher.swift */,
 				F70043AF256696C500330DFD /* DeezerDataFetcher.swift */,
+				F7F806FB256706B20049537D /* ShareManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -206,10 +209,22 @@
 		F7B103D92500E67C00C895FE /* ModalView */ = {
 			isa = PBXGroup;
 			children = (
+				F77EACFD24F2F18100F5D105 /* SongView.swift */,
+				F7DE4044254358940026B30F /* SongInfoView.swift */,
 				F73BB9C024F6D25B00520777 /* AddMusicView.swift */,
 				F7B103D72500E60700C895FE /* AddArtistView.swift */,
 			);
 			path = ModalView;
+			sourceTree = "<group>";
+		};
+		F7BB02832566FF2C00946ED2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F77EAD0124F30F7300F5D105 /* ArtistsList.swift */,
+				F77EAD0324F31E8A00F5D105 /* SongList.swift */,
+				F747B9742542A6D8005F368F /* SearchView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		F7C9F9A0254439DF00E78A94 /* Tools */ = {
@@ -219,15 +234,6 @@
 				F7BB027D2566F12A00946ED2 /* ImageCache.swift */,
 			);
 			path = Tools;
-			sourceTree = "<group>";
-		};
-		F7CA2ED12541D49E0085FD26 /* Lists */ = {
-			isa = PBXGroup;
-			children = (
-				F77EAD0124F30F7300F5D105 /* ArtistsList.swift */,
-				F77EAD0324F31E8A00F5D105 /* SongList.swift */,
-			);
-			path = Lists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +309,7 @@
 			files = (
 				F7BB027E2566F12A00946ED2 /* ImageCache.swift in Sources */,
 				F70043B0256696C500330DFD /* DeezerDataFetcher.swift in Sources */,
+				F7BB02812566FE1800946ED2 /* PasteboardManager.swift in Sources */,
 				F77EACFA24F2ED2B00F5D105 /* Music.swift in Sources */,
 				F77EACE624F2ECF600F5D105 /* AppDelegate.swift in Sources */,
 				F7F209ED251CFCB4001A4111 /* FilteredList.swift in Sources */,
@@ -327,6 +334,7 @@
 				F72B3A272517ED0C00A1B18B /* CoverView.swift in Sources */,
 				F77EACE824F2ECF600F5D105 /* SceneDelegate.swift in Sources */,
 				F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */,
+				F7F806FC256706B20049537D /* ShareManager.swift in Sources */,
 				F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */,
 				F77EACEA24F2ECF600F5D105 /* ContentView.swift in Sources */,
 				F7BB027B2566EEAC00946ED2 /* UrlImageModel.swift in Sources */,

@@ -11,11 +11,14 @@ import UIKit
 
 struct SongCell: View {
     
-    var isAddButtonShow: Bool?
+    @FetchRequest(entity: Music.entity(), sortDescriptors: []) var availableSongs: FetchedResults<Music>
+    
+    @State var isAddButtonShow: Bool = true
     var preview: UIImage?
     var urlImage: String?
     var songName: String
     var author: String?
+    var trackPreviewUrl: String?
     var action: () -> ()
     
     @State var isShowButton = false
@@ -50,14 +53,36 @@ struct SongCell: View {
             
             Spacer()
             
-            if isAddButtonShow != nil {
+            if isAddButtonShow {
                 AddButtonView(show: $isShowButton, title: "Add") {
                     self.action()
                 }
             }
         }
+        .contextMenu {
+           Button(action: {
+            if let url = trackPreviewUrl {
+                ShareManager.share.shareUrl(url: url)
+            }
+           }, label: {
+               HStack {
+                   Text("Share")
+                   Spacer()
+                   Image(systemName: "square.and.arrow.up")
+               }
+           })
+        }
         .frame(height: 50)
         .frame(maxWidth: .infinity)
+        .onAppear {
+            availableSongs.map { song in
+                if song.name == songName {
+                    self.isAddButtonShow = false
+                    print(songName)
+                }
+            }
+        }
+        
     }
 }
 

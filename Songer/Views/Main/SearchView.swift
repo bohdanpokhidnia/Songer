@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct SearchView: View {
+    
     @Environment(\.managedObjectContext) var viewContext
+    
     @State private var songs: [SongInfo] = []
-    @State private var searchText: String = "Morgenshtern"
+    @State private var searchText: String = "AC/DC"
     @State private var showSong: Bool = false
     
     private var imageCache = ImageCache.getImageCache()
@@ -19,6 +21,7 @@ struct SearchView: View {
     var body: some View {
         VStack{
             HStack{
+                
                 TextField("Enter text", text: $searchText)
                 Spacer()
                 Button("Search") {
@@ -35,10 +38,12 @@ struct SearchView: View {
                     Button(action: {
                         showSong.toggle()
                     }, label: {
-                        SongCell(isAddButtonShow: true,
-                                urlImage: song.artworkUrl350,
+                        
+                        SongCell(urlImage: song.artworkUrl350,
                                 songName: song.trackName,
-                                author: song.artistName) {
+                                author: song.artistName,
+                                trackPreviewUrl: song.trackViewUrl)
+                        {
                             self.addSong(song)
                         }
                     })
@@ -54,14 +59,17 @@ struct SearchView: View {
     private func addSong(_ song: SongInfo) {
         
         let newSong = Music(context: self.viewContext)
-
-        newSong.pictures = imageCache.get(forKey: song.artworkUrl350)!.jpegData(compressionQuality: 1.0)!
+        
+        if let imageData = imageCache.get(forKey: song.artworkUrl350)?.jpegData(compressionQuality: 1.0) {
+            newSong.pictures = imageData
+        }
         
         newSong.name = song.trackName
         newSong.artist = song.artistName
         newSong.album = song.album
         newSong.text = "Text song..."
         newSong.date = "song.stringDate"
+        newSong.previewUrl = song.trackViewUrl 
         
         
         do {

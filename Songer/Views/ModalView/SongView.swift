@@ -14,6 +14,7 @@ struct SongView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var song: Music
     
+    @State private var showAlert: Bool = false
     @State private var showEditMusicView: Bool = false
     @State private var showSheets: Bool = false
     @State private var dateString: String = ""
@@ -43,12 +44,21 @@ struct SongView: View {
                                 Text(song.name)
                                     .font(.system(size: 20, weight: .semibold))
                                     .lineLimit(1)
+                                    .onLongPressGesture {
+                                        self.longPressToCopy(song.name)
+                                    }
                                 
                                 Text(song.artist)
                                     .font(.system(size: 18, weight: .regular))
+                                    .onLongPressGesture {
+                                        self.longPressToCopy(song.artist)
+                                    }
                                 
                                 Text(song.album)
                                     .font(.subheadline)
+                                    .onLongPressGesture {
+                                        self.longPressToCopy(song.album)
+                                    }
                                 
                                 if let featArtistsLine = self.featArtistToOneLine(artists: self.song.featArtists) {
                                     Text(featArtistsLine)
@@ -90,6 +100,9 @@ struct SongView: View {
                 AddMusicView(song: self.song)
                     .environment(\.managedObjectContext, self.managedObjectContext)
             }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Copy success"))
+            }
             .actionSheet(isPresented: $showSheets) {
                 ActionSheet(title: Text("Select action"),
                             buttons: [.default(Text("Edit music"), action: {
@@ -102,6 +115,11 @@ struct SongView: View {
                 }
             }
        
+    }
+    
+    func longPressToCopy(_ text: String) {
+        PasteboardManager.setString(text: text)
+        self.showAlert.toggle()
     }
     
     func featArtistToOneLine(artists: [String]?) -> String? {

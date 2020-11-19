@@ -31,6 +31,7 @@ struct SongList: View {
                     SongCell(preview: UIImage(data: pictures) ?? UIImage(named: "cover")!,
                              songName: song.name,
                              author: song.artist,
+                             trackPreviewUrl: song.previewUrl,
                              action: {})
                 }
 
