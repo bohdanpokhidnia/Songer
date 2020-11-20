@@ -1,5 +1,5 @@
 //
-//  ArtistView.swift
+//  ArtistCell.swift
 //  Songer
 //
 //  Created by Bogdan Pohidnya on 24.08.2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ArtistRow: View {
+struct ArtistCell: View {
     
     var artistName: String = ""
     var artistPictures: UIImage = UIImage(named: "cover")!
@@ -30,8 +30,8 @@ struct ArtistRow: View {
     }
 }
 
-struct ArtistView_Previews: PreviewProvider {
+struct ArtistCell_Previews: PreviewProvider {
     static var previews: some View {
-        ArtistRow(artistName: "Artist", artistPictures: UIImage(named: "person")!)
+        ArtistCell(artistName: "Artist", artistPictures: UIImage(named: "person")!)
     }
 }

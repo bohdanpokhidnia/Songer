@@ -10,7 +10,7 @@
 import UIKit
 
 class ItunesDataFetcher {
-    let itunesService = NetworkService(.itunes)
+    let itunesService = NetworkService(.itunesSearch)
     
     func fetchSongsByArtist(query: String, response: @escaping ([SongInfo]?) -> ()) {
         itunesService.requestSongsByArtist(query: query) { (result) in

@@ -47,9 +47,9 @@ struct SongList: View {
                 .imageScale(.large)
                 .padding(.vertical)
                 .padding(.leading)
-        }).sheet(isPresented: $showAddMusicView, content: {
+        }).sheet(isPresented: $showAddMusicView) {
             AddMusicView().environment(\.managedObjectContext, managedObjectContext)
-        }))
+        })
     }
 }
 

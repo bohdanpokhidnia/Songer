@@ -19,7 +19,7 @@ struct ArtistsList: View {
                 
                 NavigationLink(destination: SongList(artistName: artist.name),
                                label: {
-                                ArtistRow(artistName: artist.name, artistPictures: UIImage(data: artist.pictures)!)
+                                ArtistCell(artistName: artist.name, artistPictures: UIImage(data: artist.pictures)!)
                                })
                 
             }.onDelete { indexSet in

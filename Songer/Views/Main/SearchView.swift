@@ -16,6 +16,7 @@ struct SearchView: View {
     @State private var searchText: String = "AC/DC"
     @State private var showSong: Bool = false
     
+    
     private var imageCache = ImageCache.getImageCache()
     
     var body: some View {
@@ -38,7 +39,6 @@ struct SearchView: View {
                     Button(action: {
                         showSong.toggle()
                     }, label: {
-                        
                         SongCell(urlImage: song.artworkUrl350,
                                 songName: song.trackName,
                                 author: song.artistName,
@@ -83,7 +83,9 @@ struct SearchView: View {
         ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
             guard let songs = songs else { return }
             
-            self.songs = songs
+            withAnimation(.spring()) {
+                self.songs = songs
+            }
         }
     }
 }

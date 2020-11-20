@@ -9,7 +9,7 @@
 import UIKit
 
 class DeezerDataFetcher {
-    private let deezerNetworkService = NetworkService(.deezer)
+    private let deezerNetworkService = NetworkService(.deezerSearch)
     
     func fetchArtistPictureURL(artistName: String, completion: @escaping (String?) -> ()) {
         deezerNetworkService.requestArist(query: artistName) { (result) in

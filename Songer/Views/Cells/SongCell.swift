@@ -60,17 +60,14 @@ struct SongCell: View {
             }
         }
         .contextMenu {
-           Button(action: {
-            if let url = trackPreviewUrl {
-                ShareManager.share.shareUrl(url: url)
-            }
-           }, label: {
-               HStack {
-                   Text("Share")
-                   Spacer()
-                   Image(systemName: "square.and.arrow.up")
-               }
-           })
+            Button(action: {
+                if let url = trackPreviewUrl {
+                    ShareManager.share.shareUrl(url: url)
+                }
+            }, label: {
+                Text("Share")
+                Image(systemName: "square.and.arrow.up")
+            })
         }
         .frame(height: 50)
         .frame(maxWidth: .infinity)
@@ -78,11 +75,9 @@ struct SongCell: View {
             availableSongs.map { song in
                 if song.name == songName {
                     self.isAddButtonShow = false
-                    print(songName)
                 }
             }
         }
-        
     }
 }
 
@@ -95,8 +90,8 @@ struct SongRow_Previews: PreviewProvider {
     static var previews: some View {
         
         SongCell(isAddButtonShow: true,
-                songName: title,
-                author: author, action: {})
+                 songName: title,
+                 author: author, action: {})
     }
 }
 

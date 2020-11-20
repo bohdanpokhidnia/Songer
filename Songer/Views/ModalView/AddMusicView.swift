@@ -49,6 +49,8 @@ struct AddMusicView: View {
                 Section(header: Text("Automatic"), footer: Text("Input name and artist")) {
                     Button("Search") {
                         
+                        print("tap button")
+                        
                         if !name.isEmpty && !artist.isEmpty {
                             
                             self.searchInfo()
@@ -137,7 +139,19 @@ struct AddMusicView: View {
             
             album = song.album
             
-            text = "Text song..."
+            MusicMatchDataFetcher().fetchTrackByNameAndArtist(artistName: self.artist, trackName: self.name) { (track) in
+                if let track = track {
+                    print(track.trackId)
+                    print(track.artistName)
+                    print(track.trackName)
+                    
+                    MusicMatchDataFetcher().fetchLyricsByTrackId(trackId: track.trackId) { (lyrics) in
+                        guard let lyrics = lyrics else { return }
+                        
+                        self.text = lyrics
+                    }
+                }
+            }
             
             date = StringDateFormatter().stringToDate(song.stringDate, "yyyy.MM.dd")
         }
