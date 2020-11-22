@@ -20,8 +20,8 @@ struct AddMusicView: View {
     @State private var pictures: Image?
     @State private var inputImage: UIImage?
     
-    @State private var name: String = "El Problema"
-    @State private var artist: String = "Morgenshtern"
+    @State private var name: String = "Дежавю"
+    @State private var artist: String = "Артём Пивоваров"
     @State private var album: String = ""
     @State private var text: String = ""
     @State private var featArtist: String = ""
@@ -132,7 +132,6 @@ struct AddMusicView: View {
                     pictures = Image(uiImage: image)
                 }
                 inputImage = image
-                
             }
             
             previewUrl = song.trackViewUrl

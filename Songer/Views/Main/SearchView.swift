@@ -13,7 +13,7 @@ struct SearchView: View {
     @Environment(\.managedObjectContext) var viewContext
     
     @State private var songs: [SongInfo] = []
-    @State private var searchText: String = "AC/DC"
+    @State private var searchText: String = "Артём Пивоваров"
     @State private var showSong: Bool = false
     
     

@@ -15,7 +15,7 @@ struct AddArtistView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
-    @State private var name: String = "Oxxxymiron"
+    @State private var name: String = "Артём Пивоваров"
     @State private var pictures: Image?
     
     @State private var showingImagePicker: Bool = false
