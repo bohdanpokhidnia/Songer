@@ -38,18 +38,22 @@ struct SongCell: View {
             }
             
             
+            
             VStack(alignment: .leading) {
                 Text(songName)
                     .font(.body)
                 
                 if let author = author {
                     Spacer()
+                        .frame(maxWidth: .infinity)
                     
                     Text(author)
-                        .font(.subheadline)
+                        .font(.body)
                         .foregroundColor(.gray)
                 }
-            }.frame(height: 50)
+            }.frame(minWidth: 0, maxWidth: .infinity)
+            
+            
             
             Spacer()
             

@@ -41,6 +41,7 @@
 		F7BB02812566FE1800946ED2 /* PasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB02802566FE1800946ED2 /* PasteboardManager.swift */; };
 		F7C9F9A225443A1E00E78A94 /* StringDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */; };
 		F7CB0CA225013A510089AB32 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CB0CA125013A510089AB32 /* ImagePicker.swift */; };
+		F7D8348E256BB2CE00E94960 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D8348D256BB2CE00E94960 /* SearchBar.swift */; };
 		F7DE403F254346560026B30F /* ItunesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE403E254346560026B30F /* ItunesDataFetcher.swift */; };
 		F7DE4045254358940026B30F /* SongInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4044254358940026B30F /* SongInfoView.swift */; };
 		F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */; };
@@ -86,6 +87,7 @@
 		F7BB02802566FE1800946ED2 /* PasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManager.swift; sourceTree = "<group>"; };
 		F7C9F9A125443A1E00E78A94 /* StringDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateFormatter.swift; sourceTree = "<group>"; };
 		F7CB0CA125013A510089AB32 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F7D8348D256BB2CE00E94960 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		F7DE403E254346560026B30F /* ItunesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDataFetcher.swift; sourceTree = "<group>"; };
 		F7DE4044254358940026B30F /* SongInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoView.swift; sourceTree = "<group>"; };
 		F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
@@ -115,11 +117,12 @@
 		F740C63725080FC4009B1410 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				F7F209EC251CFCB4001A4111 /* FilteredList.swift */,
 				F7CB0CA125013A510089AB32 /* ImagePicker.swift */,
+				F7D8348D256BB2CE00E94960 /* SearchBar.swift */,
 				F743D45325121AAB002E5F61 /* TextView.swift */,
 				F72B3A262517ED0C00A1B18B /* CoverView.swift */,
 				F72B3A2A2517EE5300A1B18B /* PersonView.swift */,
-				F7F209EC251CFCB4001A4111 /* FilteredList.swift */,
 				F7AF105525403137003CC380 /* URLImageView.swift */,
 				F7E21CED2565B1EB0099AA8E /* AddButtonView.swift */,
 			);
@@ -351,6 +354,7 @@
 				F74C88EA2567E26800E8B1F0 /* MusicMatchLyrics.swift in Sources */,
 				F7B103D82500E60700C895FE /* AddArtistView.swift in Sources */,
 				F7F806FC256706B20049537D /* ShareManager.swift in Sources */,
+				F7D8348E256BB2CE00E94960 /* SearchBar.swift in Sources */,
 				F7E21CEE2565B1EB0099AA8E /* AddButtonView.swift in Sources */,
 				F77EACEA24F2ECF600F5D105 /* ContentView.swift in Sources */,
 				F7BB027B2566EEAC00946ED2 /* UrlImageModel.swift in Sources */,

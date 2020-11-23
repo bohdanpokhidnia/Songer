@@ -12,8 +12,8 @@ class StringDateFormatter {
     
     private let dateFormatter = DateFormatter()
     
-    init() {
-        dateFormatter.locale = Locale(identifier: "en_US")
+    init(identifier: String = "en_US") {
+        dateFormatter.locale = Locale(identifier: identifier)
     }
     
     func dateToString(_ date: Date) -> String {

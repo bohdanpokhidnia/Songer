@@ -13,7 +13,7 @@ struct SearchView: View {
     @Environment(\.managedObjectContext) var viewContext
     
     @State private var songs: [SongInfo] = []
-    @State private var searchText: String = "Артём Пивоваров"
+    @State private var searchText: String = ""
     @State private var showSong: Bool = false
     
     
@@ -21,18 +21,11 @@ struct SearchView: View {
     
     var body: some View {
         VStack{
-            HStack{
+            SearchBar(text: $searchText, placeholder: "Search") {
                 
-                TextField("Enter text", text: $searchText)
-                Spacer()
-                Button("Search") {
-                    
-                    songs.removeAll()
-                    
-                    searchSongs()
-                }
-            }.padding()
-            
+                self.searchSongs()
+                
+            }
             List {
                 ForEach(songs) { song in
                     
@@ -80,10 +73,12 @@ struct SearchView: View {
     }
     
     private func searchSongs() {
+        self.songs.removeAll()
+        
         ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
             guard let songs = songs else { return }
             
-            withAnimation(.spring()) {
+            withAnimation {
                 self.songs = songs
             }
         }

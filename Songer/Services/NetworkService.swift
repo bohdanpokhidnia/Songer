@@ -175,7 +175,9 @@ class NetworkService {
         
         urlComponents.queryItems = [
             URLQueryItem(name: "term", value: query),
-            URLQueryItem(name: "entity", value: "musicTrack"),
+            URLQueryItem(name: "media", value: "music"),
+            URLQueryItem(name: "entity", value: "song"),
+            URLQueryItem(name: "lang", value: "ru_ru"),
             URLQueryItem(name: "limit", value: "200")
         ]
         

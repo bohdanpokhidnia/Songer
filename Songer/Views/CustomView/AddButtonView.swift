@@ -20,12 +20,16 @@ struct AddButtonView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 60)
-                .frame(width: show ? 0 : width ?? 80, height: height ?? 40)
+//            RoundedRectangle(cornerRadius: 60)
+//                .frame(width: show ? 0 : width ?? 80, height: height ?? 30)
+//                .foregroundColor(color)
+            
+            Capsule()
+                .frame(width: show ? 0 : width ?? 80, height: height ?? 30)
                 .foregroundColor(color)
             
             Text(title)
-                .font(.body)
+                .font(.callout)
                 .fontWeight(.semibold)
                 .foregroundColor(.blue)
                 .opacity(show ? 0 : 1)

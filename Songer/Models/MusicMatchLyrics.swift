@@ -6,19 +6,19 @@
 //  Copyright © 2020 Bogdan Pohidnya. All rights reserved.
 //
 
-struct MusicMatchLyricsResponse: Codable {
+struct MusicMatchLyricsResponse: Decodable {
     var message: LyricsMessage
 }
 
-struct LyricsMessage: Codable {
+struct LyricsMessage: Decodable {
     var body: LyricsBody
 }
 
-struct LyricsBody: Codable {
+struct LyricsBody: Decodable {
     var lyrics: Lyrics
 }
 
-struct Lyrics: Codable {
+struct Lyrics: Decodable {
     var lyricsBody: String
     
     enum CodingKeys: String, CodingKey {
@@ -30,7 +30,7 @@ extension Lyrics {
     var text: String {
         var lyrics = self.lyricsBody
         
-        let range = lyrics.index(lyrics.endIndex, offsetBy: -54) ..< lyrics.endIndex
+        let range = lyrics.index(lyrics.endIndex, offsetBy: -70) ..< lyrics.endIndex
         
         lyrics.removeSubrange(range)
         

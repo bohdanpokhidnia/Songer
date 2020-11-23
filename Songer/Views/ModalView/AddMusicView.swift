@@ -140,14 +140,16 @@ struct AddMusicView: View {
             
             MusicMatchDataFetcher().fetchTrackByNameAndArtist(artistName: self.artist, trackName: self.name) { (track) in
                 if let track = track {
-                    print(track.trackId)
-                    print(track.artistName)
-                    print(track.trackName)
                     
-                    MusicMatchDataFetcher().fetchLyricsByTrackId(trackId: track.trackId) { (lyrics) in
-                        guard let lyrics = lyrics else { return }
+                    if track.isLyrics {
                         
-                        self.text = lyrics
+                        MusicMatchDataFetcher().fetchLyricsByTrackId(trackId: track.trackId) { (lyrics) in
+                            guard let lyrics = lyrics else { return }
+                            
+                            self.text = lyrics
+                        }
+                    } else {
+                        self.text = "No found text"
                     }
                 }
             }

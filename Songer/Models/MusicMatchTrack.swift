@@ -6,16 +6,16 @@
 //  Copyright © 2020 Bogdan Pohidnya. All rights reserved.
 //
 
-struct MusicMatchSearchResponse: Codable {
+struct MusicMatchSearchResponse: Decodable {
     var message: Message
 }
 
-struct Message: Codable {
+struct Message: Decodable {
     var header: Header
     var body: Body
 }
 
-struct Header: Codable {
+struct Header: Decodable {
     var statusCode: Int
     var executeTime: Double
     var available: Int
@@ -27,7 +27,7 @@ struct Header: Codable {
     }
 }
 
-struct Body: Codable {
+struct Body: Decodable {
     var trackList: [TrackList]
 
     enum CodingKeys: String, CodingKey  {
@@ -35,11 +35,11 @@ struct Body: Codable {
     }
 }
 
-struct TrackList: Codable {
+struct TrackList: Decodable {
     var track: Track
 }
 
-struct Track : Codable {
+struct Track : Decodable {
     var trackId: Int
     var trackName: String
     var hasLyrics: Int

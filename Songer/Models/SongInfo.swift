@@ -14,7 +14,7 @@ struct SearchResponse: Decodable {
 }
 
 struct SongInfo: Decodable, Identifiable {
-    let id = UUID().uuidString
+    let id = UUID()
     
     let wrapperType: String
     let kind: String
