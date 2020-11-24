@@ -9,34 +9,45 @@
 import Foundation
 import UIKit
 
-enum ServiceType {
+enum SourceService {
     case itunesSearch
+    case itunesLookupTrackById
     case deezerSearch
     case musicMatchSearch
     case musicMatchLyrics
 }
 
+
+
 class NetworkService {
     
     private var urlComponents = URLComponents()
     
-    private var musicMatchApiKey = "a5bb3109784f69ecefdd72d7f244003e"
+    private let itunesPath: String = "itunes.apple.com"
+    private let deezerPath: String = "api.deezer.com"
+    private let musicMatchPath = "api.musixmatch.com"
     
-    init(_ type: ServiceType) {
+    private let musicMatchApiKey = "a5bb3109784f69ecefdd72d7f244003e"
+    
+    
+    init(_ type: SourceService) {
         urlComponents.scheme = "https"
         
         switch type {
         case .itunesSearch:
-            urlComponents.host = "itunes.apple.com"
+            urlComponents.host = itunesPath
             urlComponents.path = "/search"
+        case .itunesLookupTrackById:
+            urlComponents.host = itunesPath
+            urlComponents.path = "/lookup"
         case .deezerSearch:
-            urlComponents.host = "api.deezer.com"
+            urlComponents.host = deezerPath
             urlComponents.path = "/search"
         case .musicMatchSearch:
-            urlComponents.host = "api.musixmatch.com"
+            urlComponents.host = musicMatchPath
             urlComponents.path = "/ws/1.1/track.search"
         case .musicMatchLyrics:
-            urlComponents.host = "api.musixmatch.com"
+            urlComponents.host = musicMatchPath
             urlComponents.path = "/ws/1.1/track.lyrics.get"
         }
         
@@ -52,22 +63,26 @@ class NetworkService {
         
         guard let url = URL(string: absoluteStringUrl) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
-            if let error = error {
-                print("Failed when request lyrics from MusicMatch: \(error)")
-                completion(.failure(error))
-            }
-            
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode != 200 {
-                    print("Status code: \(response.statusCode)")
+            DispatchQueue.main.async {
+                
+                if let error = error {
+                    print("Failed when request lyrics from MusicMatch: \(error)")
+                    completion(.failure(error))
                 }
+                
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode != 200 {
+                        print("Status code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
             }
             
-            guard let data = data else { return }
-            
-            completion(.success(data))
         }
         
         task.resume()
@@ -87,7 +102,7 @@ class NetworkService {
         
         guard let url = URL(string: absoluteStringUrl) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             DispatchQueue.main.async {
                 
@@ -115,7 +130,7 @@ class NetworkService {
     func requestURLImage(urlString: String, completion: @escaping (Result<Data, Error>) -> ()) {
         guard let url = URL(string: urlString) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             DispatchQueue.main.async {
                 
@@ -149,7 +164,7 @@ class NetworkService {
         
         guard let searchURL = URL(string: absoluteStringURL) else { return }
         
-        let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: searchURL) { data, response, error in
             
             DispatchQueue.main.async {
                 if let error = error {
@@ -185,7 +200,71 @@ class NetworkService {
         
         guard let searchURL = URL(string: absoluteStringURL) else { return }
         
-        let task = URLSession.shared.dataTask(with: searchURL) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: searchURL) { data, response, error in
+            
+            DispatchQueue.main.async {
+                
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let response = response as? HTTPURLResponse {
+                    
+                    if response.statusCode != 200 {
+                        print("Status code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func requestChart(completion: @escaping (Result<Data, Error>) -> ()) {
+        
+        let url = "https://rss.itunes.apple.com/api/v1/ua/apple-music/hot-tracks/all/100/explicit.json"
+        
+        guard let searchURL = URL(string: url) else { return }
+        
+        let task = URLSession.shared.dataTask(with: searchURL) { data, response, error in
+            
+            DispatchQueue.main.async {
+                
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let response = response as? HTTPURLResponse {
+                    
+                    if response.statusCode != 200 {
+                        print("Status code: \(response.statusCode)")
+                    }
+                }
+                
+                guard let data = data else { return }
+                
+                completion(.success(data))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func requestTrackById(id: Int, completion: @escaping (Result<Data, Error>) -> ()) {
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "id", value: "\(id)")
+        ]
+        
+        guard let absoluteStringURL = urlComponents.url?.absoluteString else { return }
+        
+        guard let searchURL = URL(string: absoluteStringURL) else { return }
+        
+        let task = URLSession.shared.dataTask(with: searchURL) { data, response, error in
             
             DispatchQueue.main.async {
                 

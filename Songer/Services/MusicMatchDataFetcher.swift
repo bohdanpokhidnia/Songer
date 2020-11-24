@@ -10,11 +10,11 @@ import Foundation
 
 class MusicMatchDataFetcher {
     
-    func fetchTrackByNameAndArtist(artistName: String, trackName: String, response: @escaping (Track?) -> ()) {
+    class func fetchTrackByNameAndArtist(artistName: String, trackName: String, response: @escaping (Track?) -> ()) {
         
         let searchMusicMatch = NetworkService(.musicMatchSearch)
         
-        searchMusicMatch.requestSearchTrack(artistName: artistName, trackName: trackName) { (result) in
+        searchMusicMatch.requestSearchTrack(artistName: artistName, trackName: trackName) { result in
             switch result {
             case .success(let data):
                 do {
@@ -32,10 +32,10 @@ class MusicMatchDataFetcher {
         }
     }
     
-    func fetchLyricsByTrackId(trackId: Int, response: @escaping (String?) -> ()) {
+    class func fetchLyricsByTrackId(trackId: Int, response: @escaping (String?) -> ()) {
         let lyricsMusicMatch = NetworkService(.musicMatchLyrics)
         
-        lyricsMusicMatch.requestLyricsByTrackId(trackId: trackId) { (result) in
+        lyricsMusicMatch.requestLyricsByTrackId(trackId: trackId) { result in
             switch result {
             case .success(let data):
                 do {

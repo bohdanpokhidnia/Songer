@@ -10,10 +10,9 @@
 import UIKit
 
 class ItunesDataFetcher {
-    let itunesService = NetworkService(.itunesSearch)
     
-    func fetchSongsByArtist(query: String, response: @escaping ([SongInfo]?) -> ()) {
-        itunesService.requestSongsByArtist(query: query) { (result) in
+    class func fetchSongsByArtist(query: String, sourceType: SourceService, response: @escaping ([SongInfo]?) -> ()) {
+        NetworkService(sourceType).requestSongsByArtist(query: query) { result in
             switch result {
             
             case .success(let data):
@@ -31,9 +30,9 @@ class ItunesDataFetcher {
         }
     }
     
-    func fetchTrackByArtist(artistName: String, trackName: String, response: @escaping (SongInfo?) -> ()) {
+    class func fetchTrackByArtist(artistName: String, trackName: String, sourceType: SourceService,  response: @escaping (SongInfo?) -> ()) {
         
-        fetchSongsByArtist(query: artistName) { (songs) in
+        fetchSongsByArtist(query: artistName, sourceType: sourceType) { songs in
             guard let songs = songs else { return }
         
             for song in songs {
@@ -47,8 +46,28 @@ class ItunesDataFetcher {
         }
     }
     
-    func fetchCoverFromUrl(url: String, response: @escaping (UIImage?) -> ()) {
-        itunesService.requestURLImage(urlString: url) { (result) in
+    class func fetchTrackById(trackId: Int, sourceType: SourceService, response: @escaping () -> ()) {
+        
+    }
+    
+    func fetchChart(response: @escaping ([TrackChart]?) -> ()) {
+        NetworkService(.itunesSearch).requestChart { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let answer = try JSONDecoder().decode(ResponseChart.self, from: data)
+                    response(answer.feed.results)
+                } catch {
+                    print("Failed fetch chart: \(error)")
+                }
+            case .failure(_):
+                response(nil)
+            }
+        }
+    }
+    
+    class func fetchCoverFromUrl(url: String, sourceType: SourceService, response: @escaping (UIImage?) -> ()) {
+         NetworkService(sourceType).requestURLImage(urlString: url) { result in
             switch result {
             
             case .success(let data):

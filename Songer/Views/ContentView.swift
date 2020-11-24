@@ -22,6 +22,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             TabView {
+                ChartView(chart: [])
+                    .tabItem {
+                        Image(systemName: "chart.bar.fill")
+                            .font(.largeTitle)
+                        Text("Chart")
+                    }
                 ArtistsList()
                     .tabItem {
                         Image(systemName: "rectangle.stack.person.crop.fill")
@@ -42,6 +48,7 @@ struct ContentView: View {
                             .font(.largeTitle)
                         Text("Search")
                     }
+                
                 
             }
             .navigationBarTitle(Text("Songer"))

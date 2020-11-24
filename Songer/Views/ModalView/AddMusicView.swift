@@ -122,10 +122,10 @@ struct AddMusicView: View {
     }
     
     private func searchInfo() {
-        ItunesDataFetcher().fetchTrackByArtist(artistName: artist, trackName: name) { (song) in
+        ItunesDataFetcher.fetchTrackByArtist(artistName: artist, trackName: name, sourceType: .itunesSearch) { (song) in
             guard let song = song else { return }
             
-            ItunesDataFetcher().fetchCoverFromUrl(url: song.artworkUrl350) { (image) in
+            ItunesDataFetcher.fetchCoverFromUrl(url: song.artworkUrl350, sourceType: .itunesSearch) { (image) in
                 guard let image = image else { return }
                 
                 withAnimation {
@@ -138,12 +138,12 @@ struct AddMusicView: View {
             
             album = song.album
             
-            MusicMatchDataFetcher().fetchTrackByNameAndArtist(artistName: self.artist, trackName: self.name) { (track) in
+            MusicMatchDataFetcher.fetchTrackByNameAndArtist(artistName: self.artist, trackName: self.name) { (track) in
                 if let track = track {
                     
                     if track.isLyrics {
                         
-                        MusicMatchDataFetcher().fetchLyricsByTrackId(trackId: track.trackId) { (lyrics) in
+                        MusicMatchDataFetcher.fetchLyricsByTrackId(trackId: track.trackId) { (lyrics) in
                             guard let lyrics = lyrics else { return }
                             
                             self.text = lyrics

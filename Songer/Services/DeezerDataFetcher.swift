@@ -9,10 +9,9 @@
 import UIKit
 
 class DeezerDataFetcher {
-    private let deezerNetworkService = NetworkService(.deezerSearch)
     
-    func fetchArtistPictureURL(artistName: String, completion: @escaping (String?) -> ()) {
-        deezerNetworkService.requestArist(query: artistName) { (result) in
+    class func fetchArtistPictureUrl(artistName: String, sourceType: SourceService, completion: @escaping (String?) -> ()) {
+        NetworkService(sourceType).requestArist(query: artistName) { result in
             switch result {
             case .success(let data):
                 do {
@@ -29,13 +28,13 @@ class DeezerDataFetcher {
         }
     }
     
-    func fetchArtistPicture(artistName: String, response: @escaping (UIImage?) -> ()) {
+    class func fetchArtistPicture(artistName: String, sourceType: SourceService, response: @escaping (UIImage?) -> ()) {
         
-        fetchArtistPictureURL(artistName: artistName) { (url) in
+        fetchArtistPictureUrl(artistName: artistName, sourceType: sourceType) { url in
             
             guard let url = url else { return }
             
-            self.deezerNetworkService.requestURLImage(urlString: url) { (result) in
+            NetworkService(sourceType).requestURLImage(urlString: url) { result in
                 switch result {
                 case .success(let data):
                     response(UIImage(data: data))

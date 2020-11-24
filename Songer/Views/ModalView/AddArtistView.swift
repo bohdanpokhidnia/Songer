@@ -31,8 +31,7 @@ struct AddArtistView: View {
                 
                 Section(header: Text("Auto"), footer: Text("Input name")) {
                     Button("Search") {
-                        
-                        DeezerDataFetcher().fetchArtistPicture(artistName: name) { uiimage in
+                        DeezerDataFetcher.fetchArtistPicture(artistName: name, sourceType: .deezerSearch) { uiimage in
                             if let image = uiimage {
                                 self.inputImage = image
                                 withAnimation {

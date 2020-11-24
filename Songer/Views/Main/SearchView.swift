@@ -75,7 +75,7 @@ struct SearchView: View {
     private func searchSongs() {
         self.songs.removeAll()
         
-        ItunesDataFetcher().fetchSongsByArtist(query: searchText) { (songs) in
+        ItunesDataFetcher.fetchSongsByArtist(query: searchText, sourceType: .itunesSearch) { (songs) in
             guard let songs = songs else { return }
             
             withAnimation {

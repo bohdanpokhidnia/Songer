@@ -22,7 +22,7 @@ class UrlImageModel: ObservableObject {
         
         if !loadImageFromCache() {
             guard let urlString = self.urlString else { return }
-            ItunesDataFetcher().fetchCoverFromUrl(url: urlString) { uiImage in
+            ItunesDataFetcher.fetchCoverFromUrl(url: urlString, sourceType: .itunesSearch) { uiImage in
                 
                 guard let image = uiImage else { return }
                 

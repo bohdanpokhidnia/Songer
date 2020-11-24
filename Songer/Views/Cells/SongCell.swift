@@ -19,7 +19,7 @@ struct SongCell: View {
     var songName: String
     var author: String?
     var trackPreviewUrl: String?
-    var action: () -> ()
+    var action: (() -> ())?
     
     @State var isShowButton = false
     
@@ -59,7 +59,7 @@ struct SongCell: View {
             
             if isAddButtonShow {
                 AddButtonView(show: $isShowButton, title: "Add") {
-                    self.action()
+                    self.action?()
                 }
             }
         }
