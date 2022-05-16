@@ -10,9 +10,7 @@ import SwiftUI
 
 
 struct SongList: View {
-    
     @Environment(\.managedObjectContext) var managedObjectContext
-    
     @FetchRequest(entity: Music.entity(), sortDescriptors: []) var songs: FetchedResults<Music>
     
     @State private var showMusicView: Bool = false
@@ -21,12 +19,10 @@ struct SongList: View {
     var artistName: String?
     
     var body: some View {
-        
         FilteredList(filteredKey: "artist", filteredValue: artistName ?? ""){ (song: Music) in
             Button(action: {
                 showMusicView.toggle()
             }, label: {
-
                 if let pictures = song.pictures {
                     SongCell(preview: UIImage(data: pictures) ?? UIImage(named: "cover")!,
                              songName: song.name,
@@ -34,12 +30,10 @@ struct SongList: View {
                              trackPreviewUrl: song.previewUrl,
                              action: {})
                 }
-
             }).sheet(isPresented: $showMusicView){
                 SongView().environmentObject(song)
             }
         }
-        .navigationBarTitle(Text(artistName ?? ""), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             showAddMusicView.toggle()
         }, label: {
@@ -54,7 +48,6 @@ struct SongList: View {
 }
 
 struct SongList_Previews: PreviewProvider {
-    
     @Environment(\.managedObjectContext) static var managedObjectContext
     
     static var previews: some View {

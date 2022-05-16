@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct AddButtonView: View {
-    
     @Binding var show: Bool
     var title: String
     var width: CGFloat?
@@ -20,10 +19,6 @@ struct AddButtonView: View {
     
     var body: some View {
         ZStack {
-//            RoundedRectangle(cornerRadius: 60)
-//                .frame(width: show ? 0 : width ?? 80, height: height ?? 30)
-//                .foregroundColor(color)
-            
             Capsule()
                 .frame(width: show ? 0 : width ?? 80, height: height ?? 30)
                 .foregroundColor(color)
@@ -45,7 +40,6 @@ struct AddButtonView: View {
 
 
 struct AddButtonView_Previews: PreviewProvider {
-    
     static var previews: some View {
         AddButtonView(show: .constant(false), title: "Button", action: {})
             

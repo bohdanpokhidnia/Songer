@@ -11,9 +11,7 @@ import SwiftUI
 struct TextView: UIViewRepresentable {
     
     typealias UIViewType = UITextView
-    
     @Binding var text: String
-    
     var placeholder: String = "Text"
     
     func makeUIView(context: UIViewRepresentableContext<TextView>) -> UITextView {
@@ -22,7 +20,6 @@ struct TextView: UIViewRepresentable {
         textView.textContainer.lineFragmentPadding = 0
         textView.textContainerInset = .zero
         textView.font = UIFont.systemFont(ofSize: 17)
-        
         textView.text = placeholder
         textView.textColor = .placeholderText
         
@@ -30,7 +27,6 @@ struct TextView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<TextView>) {
-        
         if text != "" || uiView.textColor == .label {
             uiView.text = text
             uiView.textColor = .label
@@ -47,6 +43,10 @@ struct TextView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
+    
+}
+
+extension TextView {
     
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: TextView
@@ -73,6 +73,5 @@ struct TextView: UIViewRepresentable {
             }
         }
     }
+    
 }
-
-

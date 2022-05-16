@@ -56,7 +56,9 @@ struct Track : Decodable {
 }
 
 extension Track {
+    
     var isLyrics: Bool {
-        return (self.hasLyrics > 0)
+        return self.hasLyrics > 0
     }
+    
 }

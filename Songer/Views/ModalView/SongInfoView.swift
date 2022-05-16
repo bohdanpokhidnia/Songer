@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct SongInfoView: View {
-    
     var songInfo: SongInfo
     
     var body: some View {
@@ -18,12 +17,10 @@ struct SongInfoView: View {
             
             Divider()
         }
-        
     }
 }
 
 struct SongInfoCell: View {
-    
     var songInfo: SongInfo
     
     @State private var price: String = "Free"
@@ -71,14 +68,40 @@ struct SongInfoCell: View {
 }
 
 struct SongInfoView_Previews: PreviewProvider {
-    
     private static let artworkLink = "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/47/0c/02/470c024c-b39a-fa7c-f4e9-cc2a8c392638/source/350x350bb.jpg"
-    private static let song = SongInfo(wrapperType: "song", kind: "song", artistId: 123, collectionId: 123, trackId: 123, artistName: "Oxxxymiron", collectionName: "Горгород", trackName: "Очень большое название для песни, которая ничего не стоит", collectionCensoredName: "Горгород", trackCensoredName: "Очень большое название для песни", artistViewUrl: "Url", collectionViewUrl: "url", trackViewUrl: "url", previewUrl: "url", artworkUrl30: artworkLink, artworkUrl60: "artwork", artworkUrl100: "artwork", collectionPrice: 22.2, trackPrice: 22.2, releaseDate: "22.10.2020", collectionExplicitness: "explicitness", trackExplicitness: "explicitness", discCount: 1, discNumber: 2, trackCount: 3, trackNumber: 4, trackTimeMillis: 123456, primaryGenreName: "Hip-hop")
     
+    private static let song = SongInfo(
+        wrapperType: "song",
+        kind: "song",
+        artistId: 123,
+        collectionId: 123,
+        trackId: 123,
+        artistName: "Oxxxymiron",
+        collectionName: "Горгород",
+        trackName: "Очень большое название для песни, которая ничего не стоит",
+        collectionCensoredName: "Горгород",
+        trackCensoredName: "Очень большое название для песни",
+        artistViewUrl: "Url",
+        collectionViewUrl: "url",
+        trackViewUrl: "url",
+        previewUrl: "url",
+        artworkUrl30: artworkLink,
+        artworkUrl60: "artwork",
+        artworkUrl100: "artwork",
+        collectionPrice: 22.2,
+        trackPrice: 22.2,
+        releaseDate: "22.10.2020",
+        collectionExplicitness: "explicitness",
+        trackExplicitness: "explicitness",
+        discCount: 1,
+        discNumber: 2,
+        trackCount: 3,
+        trackNumber: 4,
+        trackTimeMillis: 123456,
+        primaryGenreName: "Hip-hop"
+    )
     
     static var previews: some View {
-        
-        
         SongInfoView(songInfo: song)
     }
 }

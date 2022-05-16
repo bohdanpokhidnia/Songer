@@ -17,7 +17,6 @@ struct Info : Decodable {
 }
 
 struct ArtistInfo: Decodable {
-    
     let name: String
     let pictures: String
     

@@ -27,13 +27,15 @@ struct Lyrics: Decodable {
 }
 
 extension Lyrics {
+    
     var text: String {
+        guard self.lyricsBody.count > 0 else { return "Don't found text..." }
+        
         var lyrics = self.lyricsBody
-        
         let range = lyrics.index(lyrics.endIndex, offsetBy: -70) ..< lyrics.endIndex
-        
         lyrics.removeSubrange(range)
         
         return lyrics
     }
+    
 }

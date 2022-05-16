@@ -9,7 +9,6 @@
 import Foundation
 
 class StringDateFormatter {
-    
     private let dateFormatter = DateFormatter()
     
     init(identifier: String = "en_US") {
@@ -17,39 +16,23 @@ class StringDateFormatter {
     }
     
     func dateToString(_ date: Date) -> String {
-        
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        
         let dateString = dateFormatter.string(from: date)
-        
         return dateString
     }
     
     func stringToDate(_ stringDate: String, _ format: String = "dd.MM.yyyy") -> Date {
-        
         dateFormatter.dateFormat = format
+        guard let date = dateFormatter.date(from: stringDate) else { return Date() }
         
-        let date = dateFormatter.date(from: stringDate)
-        
-        if let date = date {
-            return date
-        } else {
-            return Date()
-        }
+        return date
     }
     
     func formatStringDate(_ stringDate: String, _ format: String = "dd.MM.yyyy", _ dateStyle: DateFormatter.Style = .none) -> String? {
-        
         dateFormatter.dateFormat = format
+        guard let date = dateFormatter.date(from: stringDate) else { return nil }
         
-        let date = dateFormatter.date(from: stringDate)
-        
-        if let date = date {
-            dateFormatter.dateStyle = dateStyle
-            
-            return dateFormatter.string(from: date)
-        } else {
-            return nil
-        }
+        dateFormatter.dateStyle = dateStyle
+        return dateFormatter.string(from: date)
     }
 }

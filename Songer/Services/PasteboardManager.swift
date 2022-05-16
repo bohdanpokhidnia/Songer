@@ -9,7 +9,6 @@
 import SwiftUI
 
 class PasteboardManager {
-    
     static let shared = PasteboardManager()
     
     private init() {}

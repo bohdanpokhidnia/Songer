@@ -16,11 +16,10 @@ class DeezerDataFetcher {
             case .success(let data):
                 do {
                     let artistList = try JSONDecoder().decode(SearchArtistResponse.self, from: data)
-                    
                     completion(artistList.data.first?.artist.pictures)
                     
                 } catch let jsonError {
-                    print("Failed to decode: ", jsonError)
+                    print("[dev] Failed to decode: ", jsonError)
                 }
             case.failure(_):
                 completion(nil)
@@ -29,15 +28,14 @@ class DeezerDataFetcher {
     }
     
     class func fetchArtistPicture(artistName: String, sourceType: SourceService, response: @escaping (UIImage?) -> ()) {
-        
         fetchArtistPictureUrl(artistName: artistName, sourceType: sourceType) { url in
-            
             guard let url = url else { return }
             
             NetworkService(sourceType).requestURLImage(urlString: url) { result in
                 switch result {
                 case .success(let data):
                     response(UIImage(data: data))
+                    
                 case .failure(_):
                     response(nil)
                 }

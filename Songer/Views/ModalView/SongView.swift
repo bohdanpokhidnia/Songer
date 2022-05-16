@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct SongView: View {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var song: Music
@@ -21,7 +20,6 @@ struct SongView: View {
     
     var body: some View {
             ScrollView(.vertical, showsIndicators: false) {
-                
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.gray)
                     .frame(width: 35, height: 5)
@@ -114,7 +112,6 @@ struct SongView: View {
                     self.dateString = date
                 }
             }
-       
     }
     
     func longPressToCopy(_ text: String) {
@@ -123,25 +120,18 @@ struct SongView: View {
     }
     
     func featArtistToOneLine(artists: [String]?) -> String? {
+        guard let featArtists = artists else { return nil }
+        var result = "feat. "
         
-        if let featArtists = artists {
-            
-            var result = "feat. "
-            
-            for artist in featArtists {
-                
-                if artist.isEmpty {
-                    return nil
-                }
-                
-                result += artist
+        for artist in featArtists {
+            if artist.isEmpty {
+                return nil
             }
             
-            return result
-        } else {
-            return nil
+            result += artist
         }
         
+        return result
     }
 }
 

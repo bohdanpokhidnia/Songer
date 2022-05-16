@@ -11,7 +11,6 @@ import Foundation
 class MusicMatchDataFetcher {
     
     class func fetchTrackByNameAndArtist(artistName: String, trackName: String, response: @escaping (Track?) -> ()) {
-        
         let searchMusicMatch = NetworkService(.musicMatchSearch)
         
         searchMusicMatch.requestSearchTrack(artistName: artistName, trackName: trackName) { result in
@@ -23,10 +22,11 @@ class MusicMatchDataFetcher {
                         response(answer.message.body.trackList.first?.track)
                     }
                 } catch {
-                    print("Failure to decode, error: \(error)")
+                    print("[dev] Failure to decode, error: \(error)")
                 }
+                
             case .failure(_):
-                print("Error when fetch track by name and artist")
+                print("[dev] Error when fetch track by name and artist")
                 response(nil)
             }
         }
@@ -40,12 +40,11 @@ class MusicMatchDataFetcher {
             case .success(let data):
                 do {
                     let answer = try JSONDecoder().decode(MusicMatchLyricsResponse.self, from: data)
-                    
                     response(answer.message.body.lyrics.text)
-                    
                 } catch {
-                    print("Error when fetch track by trackId")
+                    print("[dev] Error when fetch track by trackId")
                 }
+                
             case .failure(_):
                 response(nil)
             }

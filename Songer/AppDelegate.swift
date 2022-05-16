@@ -34,18 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        
         let container = NSPersistentContainer(name: "Songer")
         container.loadPersistentStores(completionHandler: { (store, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error: \(error.localizedDescription), \(error.userInfo)")
             }
         })
-        
         return container
     }()
-    
-   
     
     //MARK: - Core Data Saving Support
     func saveContext() {

@@ -14,24 +14,23 @@ class ItunesDataFetcher {
     class func fetchSongsByArtist(query: String, sourceType: SourceService, response: @escaping ([SongInfo]?) -> ()) {
         NetworkService(sourceType).requestSongsByArtist(query: query) { result in
             switch result {
-            
             case .success(let data):
                 do {
                     let songs = try JSONDecoder().decode(SearchResponse.self, from: data)
                     
                     response(songs.results)
                 } catch let jsonError {
-                    print("Failed to decode: ", jsonError)
+                    print("[dev] Failed to decode: ", jsonError)
                 }
+                
             case .failure(let error):
-                print("Error received requesting data: \(error.localizedDescription)")
+                print("[dev] Error received requesting data: \(error.localizedDescription)")
                 response(nil)
             }
         }
     }
     
     class func fetchTrackByArtist(artistName: String, trackName: String, sourceType: SourceService,  response: @escaping (SongInfo?) -> ()) {
-        
         fetchSongsByArtist(query: artistName, sourceType: sourceType) { songs in
             guard let songs = songs else { return }
         
@@ -58,8 +57,9 @@ class ItunesDataFetcher {
                     let answer = try JSONDecoder().decode(ResponseChart.self, from: data)
                     response(answer.feed.results)
                 } catch {
-                    print("Failed fetch chart: \(error)")
+                    print("[dev] Failed fetch chart: \(error)")
                 }
+                
             case .failure(_):
                 response(nil)
             }
@@ -69,12 +69,13 @@ class ItunesDataFetcher {
     class func fetchCoverFromUrl(url: String, sourceType: SourceService, response: @escaping (UIImage?) -> ()) {
          NetworkService(sourceType).requestURLImage(urlString: url) { result in
             switch result {
-            
             case .success(let data):
                 response(UIImage(data: data))
+                
             case .failure(_):
                 response(nil)
             }
         }
     }
+    
 }

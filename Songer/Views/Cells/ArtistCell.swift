@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ArtistCell: View {
-    
     var artistName: String = ""
     var artistPictures: UIImage = UIImage(named: "cover")!
     
@@ -26,7 +25,6 @@ struct ArtistCell: View {
             
             Spacer()
         }
-        
     }
 }
 

@@ -11,7 +11,6 @@ import SwiftUI
 import CoreData
 
 class Music: NSManagedObject, Identifiable {
-    
     @NSManaged public var name: String
     @NSManaged public var artist: String
     @NSManaged public var album: String
@@ -20,5 +19,4 @@ class Music: NSManagedObject, Identifiable {
     @NSManaged public var text: String
     @NSManaged public var date: String
     @NSManaged public var previewUrl: String
-    
 }

@@ -9,22 +9,21 @@
 import SwiftUI
 
 struct ArtistsList: View {
-    @FetchRequest(entity: MusicArtist.entity(), sortDescriptors: []) var artists: FetchedResults<MusicArtist>
-    
     @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: MusicArtist.entity(), sortDescriptors: []) var artists: FetchedResults<MusicArtist>
     
     var body: some View {
         List {
             ForEach(self.artists) { artist in
-                
-                NavigationLink(destination: SongList(artistName: artist.name),
-                               label: {
-                                ArtistCell(artistName: artist.name, artistPictures: UIImage(data: artist.pictures)!)
-                               })
-                
+                NavigationLink(
+                    destination: SongList(artistName: artist.name),
+                    label: {
+                        ArtistCell(artistName: artist.name, artistPictures: UIImage(data: artist.pictures)!)
+                    }
+                )
             }.onDelete { indexSet in
-                let deleteArtist = self.artists[indexSet.first!]
-                
+                guard let firstIndex = indexSet.first else { return }
+                let deleteArtist = self.artists[firstIndex]
                 self.managedObjectContext.delete(deleteArtist)
                 
                 do {
@@ -34,14 +33,11 @@ struct ArtistsList: View {
                 }
             }
         }.listStyle(PlainListStyle())
-        
     }
 }
 
 struct ArtistsList_Previews: PreviewProvider {
-    
     @Environment(\.managedObjectContext) static var managedObjectContext
-    
     
     static var previews: some View {
         ArtistsList().environment(\.managedObjectContext, managedObjectContext)

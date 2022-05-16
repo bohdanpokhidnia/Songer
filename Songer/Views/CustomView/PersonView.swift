@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct PersonView: View {
-    
     var image: Image
     var width: CGFloat?
     var height: CGFloat?
@@ -26,7 +25,6 @@ struct PersonView: View {
 }
 
 struct PersonView_Previews: PreviewProvider {
-    
     private static let image = Image("person")
     
     static var previews: some View {

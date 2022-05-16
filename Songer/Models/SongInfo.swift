@@ -49,33 +49,26 @@ struct SongInfo: Decodable, Identifiable {
 extension SongInfo {
     
     var artworkUrl350: String {
-        var url = self.artworkUrl30
+        var urlWithoutSize = artworkUrl30.components(separatedBy: "/")
+        urlWithoutSize.removeLast()
         
-        let range = url.index(url.endIndex, offsetBy: -11)..<url.endIndex
+        let newSize = "350x350bb.jpg"
+        var urlWithSize = urlWithoutSize
+        urlWithSize.append(newSize)
         
-        url.removeSubrange(range)
-        
-        url.insert(contentsOf: "350x350bb.jpg", at: url.endIndex)
-        
-        return url
+        let newUrl = urlWithSize.joined(separator: "/")
+        return newUrl
     }
     
     var stringDate: String {
-        
         var releaseDate = self.releaseDate
-        
         let range = releaseDate.index(releaseDate.startIndex, offsetBy: +10)..<releaseDate.endIndex
-        
         releaseDate.removeSubrange(range)
-        
         return releaseDate.replacingOccurrences(of: "-", with: ".")
-        
     }
     
     var roundPrice: String? {
-        
         if let price = self.trackPrice {
-            
             return String(format: "%.2f", price)
         }
         

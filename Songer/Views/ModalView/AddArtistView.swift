@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 
 struct AddArtistView: View {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
@@ -106,16 +105,13 @@ struct AddArtistView: View {
         }
         
         self.presentationMode.wrappedValue.dismiss()
-//        Daa.addArtist(artistName: self.name, artistPictures: self.inputImage!.pngData()!)
     }
 }
 
 struct AddArtistView_Previews: PreviewProvider {
-    
     @Environment(\.managedObjectContext) static var managedObjectContext
     
     static var previews: some View {
-        
         AddArtistView().environment(\.managedObjectContext, managedObjectContext)
     }
 }

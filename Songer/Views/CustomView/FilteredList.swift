@@ -10,14 +10,13 @@ import SwiftUI
 import CoreData
 
 struct FilteredList<T: NSManagedObject, Content: View>: View {
-    
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    let content: (T) -> Content
     var fetchRequest: FetchRequest<T>
     var songs: FetchedResults<T> {
         fetchRequest.wrappedValue
     }
-    let content: (T) -> Content
     
     init(filteredKey: String, filteredValue: String, @ViewBuilder content: @escaping (T) -> Content) {
         fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: NSPredicate(format: "%K BEGINSWITH %@", filteredKey, filteredValue))
@@ -35,19 +34,17 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
             }
             .onDelete(perform: delete)
         }
-        
     }
     
     func delete(index: IndexSet) {
-        
-        let deleteArtist = songs[index.first!]
-        
+        guard let firstIndex = index.first else { return }
+        let deleteArtist = songs[firstIndex]
         self.managedObjectContext.delete(deleteArtist)
         
         do {
             try self.managedObjectContext.save()
         } catch {
-            print("Error in remove object from DB: ", error)
+            print("[dev] Error in remove object from DB: ", error)
         }
     }
 }

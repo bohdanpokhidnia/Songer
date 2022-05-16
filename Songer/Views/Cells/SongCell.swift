@@ -10,10 +10,12 @@ import SwiftUI
 import UIKit
 
 struct SongCell: View {
-    
     @FetchRequest(entity: Music.entity(), sortDescriptors: []) var availableSongs: FetchedResults<Music>
     
     @State var isAddButtonShow: Bool = true
+    @State var isShowButton = false
+    
+    var number: Int = 0
     var preview: UIImage?
     var urlImage: String?
     var songName: String
@@ -21,23 +23,19 @@ struct SongCell: View {
     var trackPreviewUrl: String?
     var action: (() -> ())?
     
-    @State var isShowButton = false
-    
     var body: some View {
         HStack {
+            Text("\(number)")
+                .frame(width: 30)
             
             if let cover = urlImage {
-                
                 URLImageView(urlString: cover)
-                
             } else {
                 Image(uiImage: preview ?? UIImage(named: "cover")!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 50, height: 50)
             }
-            
-            
             
             VStack(alignment: .leading) {
                 Text(songName)
@@ -52,8 +50,6 @@ struct SongCell: View {
                         .foregroundColor(.gray)
                 }
             }.frame(minWidth: 0, maxWidth: .infinity)
-            
-            
             
             Spacer()
             
@@ -76,7 +72,7 @@ struct SongCell: View {
         .frame(height: 50)
         .frame(maxWidth: .infinity)
         .onAppear {
-            availableSongs.map { song in
+            availableSongs.forEach { song in
                 if song.name == songName {
                     self.isAddButtonShow = false
                 }
@@ -86,13 +82,11 @@ struct SongCell: View {
 }
 
 struct SongRow_Previews: PreviewProvider {
-    
     private static let image = UIImage(named: "cover")!.pngData()!
     private static let title = "Где нас нет"
     private static let author = "Oxxxymiron"
     
     static var previews: some View {
-        
         SongCell(isAddButtonShow: true,
                  songName: title,
                  author: author, action: {})

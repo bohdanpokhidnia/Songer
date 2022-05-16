@@ -10,8 +10,6 @@ import SwiftUI
 import CoreData
 
 class MusicArtist: NSManagedObject, Identifiable {
-
     @NSManaged var name: String
     @NSManaged var pictures: Data
-
 }

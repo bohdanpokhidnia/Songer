@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 struct AddMusicView: View {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -20,8 +19,8 @@ struct AddMusicView: View {
     @State private var pictures: Image?
     @State private var inputImage: UIImage?
     
-    @State private var name: String = "Дежавю"
-    @State private var artist: String = "Артём Пивоваров"
+    @State private var name: String = ""
+    @State private var artist: String = ""
     @State private var album: String = ""
     @State private var text: String = ""
     @State private var featArtist: String = ""
@@ -36,9 +35,7 @@ struct AddMusicView: View {
     
     var body: some View {
         NavigationView {
-            
             Form {
-                
                 Section(header: Text("Information")) {
                     TextField("Name", text: self.$name)
                     TextField("Artist", text: self.$artist)
@@ -48,9 +45,6 @@ struct AddMusicView: View {
                 
                 Section(header: Text("Automatic"), footer: Text("Input name and artist")) {
                     Button("Search") {
-                        
-                        print("tap button")
-                        
                         if !name.isEmpty && !artist.isEmpty {
                             
                             self.searchInfo()
@@ -84,7 +78,6 @@ struct AddMusicView: View {
                 }
                 
                 Section(header: Text("Text")) {
-                    
                     if #available(iOS 14.0, *) {
                         TextEditor(text: self.$text)
                             .font(.subheadline)
@@ -99,17 +92,18 @@ struct AddMusicView: View {
             })
             .navigationBarTitle(Text(self.navigationTitle), displayMode: .inline)
             .navigationBarItems(
-                leading: Button("Cancel"){
+                leading: Button("Cancel") {
                     self.presentationMode.wrappedValue.dismiss()
                 },trailing: Button(self.acceptButtonTitle) {
                     if let song = self.song {
                         self.update(song: song)
                     } else {
-                        if checkFields(){
-                            self.addMusic()
-                        } else {
+                        guard checkFields() else {
                             self.showingAlert.toggle()
+                            return
                         }
+                        
+                        self.addMusic()
                     }
                 })
             .alert(isPresented: $showingAlert) {
@@ -135,7 +129,6 @@ struct AddMusicView: View {
             }
             
             previewUrl = song.trackViewUrl
-            
             album = song.album
             
             MusicMatchDataFetcher.fetchTrackByNameAndArtist(artistName: self.artist, trackName: self.name) { (track) in
@@ -179,11 +172,8 @@ struct AddMusicView: View {
     }
     
     private func addMusic() {
-      
         let newSong = Music(context: self.managedObjectContext)
-        
         let newDate = StringDateFormatter().dateToString(self.date)
-        
         var pictures = UIImage(named: "cover")!.pngData()!
         
         if let inputImage = self.inputImage {
@@ -197,7 +187,6 @@ struct AddMusicView: View {
         newSong.previewUrl = self.previewUrl
         newSong.date = newDate
         newSong.pictures = pictures
-        
         
         if !self.featArtist.isEmpty {
             newSong.featArtists = [self.featArtist]
@@ -222,32 +211,32 @@ struct AddMusicView: View {
     }
     
     private func update(song: Music) {
-        
-        if checkFields() {
-            
-            managedObjectContext.performAndWait {
-                song.artist = self.artist
-                song.album = self.album
-                song.name = self.name
-                
-                if let newInputImage = self.inputImage {
-                    song.pictures = newInputImage.pngData()!
-                }
-                
-                song.featArtists = [self.featArtist]
-                song.text = self.text
-                song.date = StringDateFormatter().dateToString(self.date)
-                
-                do {
-                    try managedObjectContext.save()
-                } catch {
-                    print("error when update fields - \(error)")
-                }
-            }
-            self.presentationMode.wrappedValue.dismiss()
-        } else {
+        guard checkFields() else {
             self.showingAlert.toggle()
+            return
         }
+        
+        managedObjectContext.performAndWait {
+            song.artist = self.artist
+            song.album = self.album
+            song.name = self.name
+            
+            if let newInputImage = self.inputImage {
+                song.pictures = newInputImage.pngData()!
+            }
+            
+            song.featArtists = [self.featArtist]
+            song.text = self.text
+            song.date = StringDateFormatter().dateToString(self.date)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("error when update fields - \(error)")
+            }
+        }
+        
+        self.presentationMode.wrappedValue.dismiss()
     }
     
     private func loadImage() {
@@ -255,7 +244,6 @@ struct AddMusicView: View {
         
         pictures = Image(uiImage: inputImage)
     }
-    
     
 }
 

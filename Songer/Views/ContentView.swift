@@ -51,7 +51,7 @@ struct ContentView: View {
                 
                 
             }
-            .navigationBarTitle(Text("Songer"))
+            .navigationBarTitle(Text("Songer"), displayMode: .inline)
             .navigationBarItems(trailing:  Button(action: {
                 showActionSheet.toggle()
             }, label: {

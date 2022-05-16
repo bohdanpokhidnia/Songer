@@ -9,11 +9,9 @@
 import SwiftUI
 
 struct SongInfoDetailView: View {
-    
     var songInfo: SongInfo
     
     var body: some View {
-        
         List {
             HStack {
                 URLImageView(urlString: songInfo.artworkUrl350, width: 350, height: 350)
@@ -27,12 +25,10 @@ struct SongInfoDetailView: View {
             Text("Genre: \(songInfo.primaryGenreName)")
             Text("Release date: \(songInfo.stringDate)")
         }
-        
     }
 }
 
 struct SongInfoDetailView_Previews: PreviewProvider {
-    
     private static let artworkLink = "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/47/0c/02/470c024c-b39a-fa7c-f4e9-cc2a8c392638/source/350x350bb.jpg"
     
     static var previews: some View {
