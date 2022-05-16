@@ -48,8 +48,6 @@ struct ContentView: View {
                             .font(.largeTitle)
                         Text("Search")
                     }
-                
-                
             }
             .navigationBarTitle(Text("Songer"), displayMode: .inline)
             .navigationBarItems(trailing:  Button(action: {
